@@ -1,6 +1,6 @@
 # coding=utf-8
 import pandas as pd
-import getData as gd
+import DataAdapter as da
 x_training_notNull=[]# tap du lieu training da duoc bien doi khong null
 x_training=[]
 y_training=[]# label cho tap du lieu x_training
@@ -44,50 +44,50 @@ def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
 
 
 # bat dau chuyen cac dac trung sang vector so khong cho phep null
-tuoi=chuyen_dac_truong_sang_so(gd.tuoi, ganSoPhanLoai(xoaTrung(gd.tuoi)))
-nghe_nghiep=chuyen_dac_truong_sang_so(gd.nghe_nghiep, ganSoPhanLoai(xoaTrung(gd.nghe_nghiep)))
-hon_nhan=chuyen_dac_truong_sang_so(gd.hon_nhan, ganSoPhanLoai(xoaTrung(gd.hon_nhan)))
-hoc_van=chuyen_dac_truong_sang_so(gd.hoc_van, ganSoPhanLoai(xoaTrung(gd.hoc_van)))
-co_the_tin_dung=chuyen_dac_truong_sang_so(gd.co_the_tin_dung, ganSoPhanLoai(xoaTrung(gd.co_the_tin_dung)))
-co_nha_o=chuyen_dac_truong_sang_so(gd.co_nha_o, ganSoPhanLoai(xoaTrung(gd.co_nha_o)))
-vay_ca_nhan=chuyen_dac_truong_sang_so(gd.vay_ca_nhan, ganSoPhanLoai(xoaTrung(gd.vay_ca_nhan)))
-kenh_lien_lac=chuyen_dac_truong_sang_so(gd.kenh_lien_lac, ganSoPhanLoai(xoaTrung(gd.kenh_lien_lac)))
-thang_lien_lac=chuyen_dac_truong_sang_so(gd.thang_lien_lac, ganSoPhanLoai(xoaTrung(gd.thang_lien_lac)))
-ngay_lien_lac=chuyen_dac_truong_sang_so(gd.ngay_lien_lac, ganSoPhanLoai(xoaTrung(gd.ngay_lien_lac)))
-thoi_luong_lien_lac=chuyen_dac_truong_sang_so(gd.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.thoi_luong_lien_lac)))
-so_luong_lien_lac=chuyen_dac_truong_sang_so(gd.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac)))
-ngay=chuyen_dac_truong_sang_so(gd.ngay, ganSoPhanLoai(xoaTrung(gd.ngay)))
-so_luong_lien_lac_truoc_day=chuyen_dac_truong_sang_so(gd.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac_truoc_day)))
-ket_qua_lan_truoc=chuyen_dac_truong_sang_so(gd.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(gd.ket_qua_lan_truoc)))
-ti_le_thay_doi_viec_lam=chuyen_dac_truong_sang_so(gd.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(gd.ti_le_thay_doi_viec_lam)))
-CPI=chuyen_dac_truong_sang_so(gd.CPI, ganSoPhanLoai(xoaTrung(gd.CPI)))
-CCI=chuyen_dac_truong_sang_so(gd.CCI, ganSoPhanLoai(xoaTrung(gd.CCI)))
-lai_suat_3thang=chuyen_dac_truong_sang_so(gd.lai_suat_3thang, ganSoPhanLoai(xoaTrung(gd.lai_suat_3thang)))
-so_luong_nhan_vien=chuyen_dac_truong_sang_so(gd.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(gd.so_luong_nhan_vien)))
+tuoi=chuyen_dac_truong_sang_so(da.tuoi, ganSoPhanLoai(xoaTrung(da.tuoi)))
+nghe_nghiep=chuyen_dac_truong_sang_so(da.nghe_nghiep, ganSoPhanLoai(xoaTrung(da.nghe_nghiep)))
+hon_nhan=chuyen_dac_truong_sang_so(da.hon_nhan, ganSoPhanLoai(xoaTrung(da.hon_nhan)))
+hoc_van=chuyen_dac_truong_sang_so(da.hoc_van, ganSoPhanLoai(xoaTrung(da.hoc_van)))
+co_the_tin_dung=chuyen_dac_truong_sang_so(da.co_the_tin_dung, ganSoPhanLoai(xoaTrung(da.co_the_tin_dung)))
+co_nha_o=chuyen_dac_truong_sang_so(da.co_nha_o, ganSoPhanLoai(xoaTrung(da.co_nha_o)))
+vay_ca_nhan=chuyen_dac_truong_sang_so(da.vay_ca_nhan, ganSoPhanLoai(xoaTrung(da.vay_ca_nhan)))
+kenh_lien_lac=chuyen_dac_truong_sang_so(da.kenh_lien_lac, ganSoPhanLoai(xoaTrung(da.kenh_lien_lac)))
+thang_lien_lac=chuyen_dac_truong_sang_so(da.thang_lien_lac, ganSoPhanLoai(xoaTrung(da.thang_lien_lac)))
+ngay_lien_lac=chuyen_dac_truong_sang_so(da.ngay_lien_lac, ganSoPhanLoai(xoaTrung(da.ngay_lien_lac)))
+thoi_luong_lien_lac=chuyen_dac_truong_sang_so(da.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(da.thoi_luong_lien_lac)))
+so_luong_lien_lac=chuyen_dac_truong_sang_so(da.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(da.so_luong_lien_lac)))
+ngay=chuyen_dac_truong_sang_so(da.ngay, ganSoPhanLoai(xoaTrung(da.ngay)))
+so_luong_lien_lac_truoc_day=chuyen_dac_truong_sang_so(da.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(da.so_luong_lien_lac_truoc_day)))
+ket_qua_lan_truoc=chuyen_dac_truong_sang_so(da.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(da.ket_qua_lan_truoc)))
+ti_le_thay_doi_viec_lam=chuyen_dac_truong_sang_so(da.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(da.ti_le_thay_doi_viec_lam)))
+CPI=chuyen_dac_truong_sang_so(da.CPI, ganSoPhanLoai(xoaTrung(da.CPI)))
+CCI=chuyen_dac_truong_sang_so(da.CCI, ganSoPhanLoai(xoaTrung(da.CCI)))
+lai_suat_3thang=chuyen_dac_truong_sang_so(da.lai_suat_3thang, ganSoPhanLoai(xoaTrung(da.lai_suat_3thang)))
+so_luong_nhan_vien=chuyen_dac_truong_sang_so(da.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(da.so_luong_nhan_vien)))
 
 
 
 # bat dau chuyen cac dac trung sang vector so cho phep null
-tuoi1=chuyen_dac_truong_sang_so_co_Null(gd.tuoi, ganSoPhanLoai(xoaTrung(gd.tuoi)))
-nghe_nghiep1=chuyen_dac_truong_sang_so_co_Null(gd.nghe_nghiep, ganSoPhanLoai(xoaTrung(gd.nghe_nghiep)))
-hon_nhan1=chuyen_dac_truong_sang_so_co_Null(gd.hon_nhan, ganSoPhanLoai(xoaTrung(gd.hon_nhan)))
-hoc_van1=chuyen_dac_truong_sang_so_co_Null(gd.hoc_van, ganSoPhanLoai(xoaTrung(gd.hoc_van)))
-co_the_tin_dung1=chuyen_dac_truong_sang_so_co_Null(gd.co_the_tin_dung, ganSoPhanLoai(xoaTrung(gd.co_the_tin_dung)))
-co_nha_o1=chuyen_dac_truong_sang_so_co_Null(gd.co_nha_o, ganSoPhanLoai(xoaTrung(gd.co_nha_o)))
-vay_ca_nhan1=chuyen_dac_truong_sang_so_co_Null(gd.vay_ca_nhan, ganSoPhanLoai(xoaTrung(gd.vay_ca_nhan)))
-kenh_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.kenh_lien_lac, ganSoPhanLoai(xoaTrung(gd.kenh_lien_lac)))
-thang_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.thang_lien_lac, ganSoPhanLoai(xoaTrung(gd.thang_lien_lac)))
-ngay_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.ngay_lien_lac, ganSoPhanLoai(xoaTrung(gd.ngay_lien_lac)))
-thoi_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.thoi_luong_lien_lac)))
-so_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac)))
-ngay1=chuyen_dac_truong_sang_so_co_Null(gd.ngay, ganSoPhanLoai(xoaTrung(gd.ngay)))
-so_luong_lien_lac_truoc_day1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac_truoc_day)))
-ket_qua_lan_truoc1=chuyen_dac_truong_sang_so_co_Null(gd.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(gd.ket_qua_lan_truoc)))
-ti_le_thay_doi_viec_lam1=chuyen_dac_truong_sang_so_co_Null(gd.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(gd.ti_le_thay_doi_viec_lam)))
-CPI1=chuyen_dac_truong_sang_so_co_Null(gd.CPI, ganSoPhanLoai(xoaTrung(gd.CPI)))
-CCI1=chuyen_dac_truong_sang_so_co_Null(gd.CCI, ganSoPhanLoai(xoaTrung(gd.CCI)))
-lai_suat_3thang1=chuyen_dac_truong_sang_so_co_Null(gd.lai_suat_3thang, ganSoPhanLoai(xoaTrung(gd.lai_suat_3thang)))
-so_luong_nhan_vien1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(gd.so_luong_nhan_vien)))
+tuoi1=chuyen_dac_truong_sang_so_co_Null(da.tuoi, ganSoPhanLoai(xoaTrung(da.tuoi)))
+nghe_nghiep1=chuyen_dac_truong_sang_so_co_Null(da.nghe_nghiep, ganSoPhanLoai(xoaTrung(da.nghe_nghiep)))
+hon_nhan1=chuyen_dac_truong_sang_so_co_Null(da.hon_nhan, ganSoPhanLoai(xoaTrung(da.hon_nhan)))
+hoc_van1=chuyen_dac_truong_sang_so_co_Null(da.hoc_van, ganSoPhanLoai(xoaTrung(da.hoc_van)))
+co_the_tin_dung1=chuyen_dac_truong_sang_so_co_Null(da.co_the_tin_dung, ganSoPhanLoai(xoaTrung(da.co_the_tin_dung)))
+co_nha_o1=chuyen_dac_truong_sang_so_co_Null(da.co_nha_o, ganSoPhanLoai(xoaTrung(da.co_nha_o)))
+vay_ca_nhan1=chuyen_dac_truong_sang_so_co_Null(da.vay_ca_nhan, ganSoPhanLoai(xoaTrung(da.vay_ca_nhan)))
+kenh_lien_lac1=chuyen_dac_truong_sang_so_co_Null(da.kenh_lien_lac, ganSoPhanLoai(xoaTrung(da.kenh_lien_lac)))
+thang_lien_lac1=chuyen_dac_truong_sang_so_co_Null(da.thang_lien_lac, ganSoPhanLoai(xoaTrung(da.thang_lien_lac)))
+ngay_lien_lac1=chuyen_dac_truong_sang_so_co_Null(da.ngay_lien_lac, ganSoPhanLoai(xoaTrung(da.ngay_lien_lac)))
+thoi_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(da.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(da.thoi_luong_lien_lac)))
+so_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(da.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(da.so_luong_lien_lac)))
+ngay1=chuyen_dac_truong_sang_so_co_Null(da.ngay, ganSoPhanLoai(xoaTrung(da.ngay)))
+so_luong_lien_lac_truoc_day1=chuyen_dac_truong_sang_so_co_Null(da.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(da.so_luong_lien_lac_truoc_day)))
+ket_qua_lan_truoc1=chuyen_dac_truong_sang_so_co_Null(da.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(da.ket_qua_lan_truoc)))
+ti_le_thay_doi_viec_lam1=chuyen_dac_truong_sang_so_co_Null(da.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(da.ti_le_thay_doi_viec_lam)))
+CPI1=chuyen_dac_truong_sang_so_co_Null(da.CPI, ganSoPhanLoai(xoaTrung(da.CPI)))
+CCI1=chuyen_dac_truong_sang_so_co_Null(da.CCI, ganSoPhanLoai(xoaTrung(da.CCI)))
+lai_suat_3thang1=chuyen_dac_truong_sang_so_co_Null(da.lai_suat_3thang, ganSoPhanLoai(xoaTrung(da.lai_suat_3thang)))
+so_luong_nhan_vien1=chuyen_dac_truong_sang_so_co_Null(da.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(da.so_luong_nhan_vien)))
 
 # tao tap  du lieu x_training_notNull
 for i in range(len(tuoi)):
@@ -140,7 +140,7 @@ for i in range(len(tuoi)):
     ])
 
 # tao tap du lieu y_training
-y_training=gd.label
+y_training=da.label
 # tao bien tra cuu thong tin
 traCuu.append(['tuoi: 0'])
 traCuu.append(['nghe_nghiep: 1'])
