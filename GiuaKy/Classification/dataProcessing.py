@@ -172,4 +172,4 @@ traCuu.append(['CCI: 17'])
 traCuu.append(['lai_suat_3thang: 18'])
 traCuu.append(['so_luong_nhan_vien: 19'])
 
-print("\t\t\t\t 2 -> Xử lý dữ liệu thành công!")
+print("\t\t\t\t 3 -> Xử lý dữ liệu thành công!")

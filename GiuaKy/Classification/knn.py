@@ -19,3 +19,7 @@ from sklearn.metrics import precision_score
 
 print(dp.x_training_coLoc[0])
 print(dp.x_training_khongLoc[2])
+
+
+
+print("\t\t\t\t 4 ->  Xử lý thuật toán Knn thành công!")

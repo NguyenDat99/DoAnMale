@@ -26,3 +26,4 @@ so_luong_nhan_vien=(DauVao['so_luong_nhan_vien'].values).tolist()
 label=(DauVao['label'].values).tolist()
 
 print("\t\t\t\t 1 -> Kết nối dữ liệu thành công!")
+print("\t\t\t\t 2 -> Chờ xíu đang load hơi lâu tí !")
