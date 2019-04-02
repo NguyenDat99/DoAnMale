@@ -29,7 +29,7 @@ def chuyen_dac_truong_sang_so(dac_trung_cu,mang_ganSoPhanLoai):
             if i==j[0]:
                 a.append([j[1]])
     return a;
-
+# ham chuyen cac dac trung ban dau thanh dang so neu gia tri unknown thi chuyen thanh null
 def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
     a=[]
     for i in dac_trung_cu:
@@ -64,7 +64,31 @@ CCI=chuyen_dac_truong_sang_so(gd.CCI, ganSoPhanLoai(xoaTrung(gd.CCI)))
 lai_suat_3thang=chuyen_dac_truong_sang_so(gd.lai_suat_3thang, ganSoPhanLoai(xoaTrung(gd.lai_suat_3thang)))
 so_luong_nhan_vien=chuyen_dac_truong_sang_so(gd.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(gd.so_luong_nhan_vien)))
 
-# tao tap  du lieu x_training
+
+
+# bat dau chuyen cac dac trung sang vector so cho phep null
+tuoi1=chuyen_dac_truong_sang_so_co_Null(gd.tuoi, ganSoPhanLoai(xoaTrung(gd.tuoi)))
+nghe_nghiep1=chuyen_dac_truong_sang_so_co_Null(gd.nghe_nghiep, ganSoPhanLoai(xoaTrung(gd.nghe_nghiep)))
+hon_nhan1=chuyen_dac_truong_sang_so_co_Null(gd.hon_nhan, ganSoPhanLoai(xoaTrung(gd.hon_nhan)))
+hoc_van1=chuyen_dac_truong_sang_so_co_Null(gd.hoc_van, ganSoPhanLoai(xoaTrung(gd.hoc_van)))
+co_the_tin_dung1=chuyen_dac_truong_sang_so_co_Null(gd.co_the_tin_dung, ganSoPhanLoai(xoaTrung(gd.co_the_tin_dung)))
+co_nha_o1=chuyen_dac_truong_sang_so_co_Null(gd.co_nha_o, ganSoPhanLoai(xoaTrung(gd.co_nha_o)))
+vay_ca_nhan1=chuyen_dac_truong_sang_so_co_Null(gd.vay_ca_nhan, ganSoPhanLoai(xoaTrung(gd.vay_ca_nhan)))
+kenh_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.kenh_lien_lac, ganSoPhanLoai(xoaTrung(gd.kenh_lien_lac)))
+thang_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.thang_lien_lac, ganSoPhanLoai(xoaTrung(gd.thang_lien_lac)))
+ngay_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.ngay_lien_lac, ganSoPhanLoai(xoaTrung(gd.ngay_lien_lac)))
+thoi_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.thoi_luong_lien_lac)))
+so_luong_lien_lac1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac)))
+ngay1=chuyen_dac_truong_sang_so_co_Null(gd.ngay, ganSoPhanLoai(xoaTrung(gd.ngay)))
+so_luong_lien_lac_truoc_day1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(gd.so_luong_lien_lac_truoc_day)))
+ket_qua_lan_truoc1=chuyen_dac_truong_sang_so_co_Null(gd.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(gd.ket_qua_lan_truoc)))
+ti_le_thay_doi_viec_lam1=chuyen_dac_truong_sang_so_co_Null(gd.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(gd.ti_le_thay_doi_viec_lam)))
+CPI1=chuyen_dac_truong_sang_so_co_Null(gd.CPI, ganSoPhanLoai(xoaTrung(gd.CPI)))
+CCI1=chuyen_dac_truong_sang_so_co_Null(gd.CCI, ganSoPhanLoai(xoaTrung(gd.CCI)))
+lai_suat_3thang1=chuyen_dac_truong_sang_so_co_Null(gd.lai_suat_3thang, ganSoPhanLoai(xoaTrung(gd.lai_suat_3thang)))
+so_luong_nhan_vien1=chuyen_dac_truong_sang_so_co_Null(gd.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(gd.so_luong_nhan_vien)))
+
+# tao tap  du lieu x_training_notNull
 for i in range(len(tuoi)):
     x_training_notNull.append([
     tuoi[i]
@@ -88,6 +112,32 @@ for i in range(len(tuoi)):
     ,lai_suat_3thang[i]
     ,so_luong_nhan_vien[i]
     ])
+
+# tao tap  du lieu x_training co null
+for i in range(len(tuoi)):
+    x_training.append([
+    tuoi1[i]
+    ,nghe_nghiep1[i]
+    ,hon_nhan1[i]
+    ,hoc_van1[i]
+    ,co_the_tin_dung1[i]
+    ,co_nha_o1[i]
+    ,vay_ca_nhan1[i]
+    ,kenh_lien_lac1[i]
+    ,thang_lien_lac1[i]
+    ,ngay_lien_lac1[i]
+    ,thoi_luong_lien_lac1[i]
+    ,so_luong_lien_lac1[i]
+    ,ngay1[i]
+    ,so_luong_lien_lac_truoc_day1[i]
+    ,ket_qua_lan_truoc1[i]
+    ,ti_le_thay_doi_viec_lam1[i]
+    ,CPI1[i]
+    ,CCI1[i]
+    ,lai_suat_3thang1[i]
+    ,so_luong_nhan_vien1[i]
+    ])
+
 # tao tap du lieu y_training
 y_training=gd.label
 # tao bien tra cuu thong tin
@@ -114,7 +164,7 @@ traCuu.append(['so_luong_nhan_vien:19'])
 
 
 #kiem thu
-t1=chuyen_dac_truong_sang_so_co_Null(gd.co_the_tin_dung, ganSoPhanLoai(xoaTrung(gd.co_the_tin_dung)))
-print(t1)
+print(x_training_notNull[1])
+print(x_training[1])
 #print(traCuu)
 #print(y_training)
