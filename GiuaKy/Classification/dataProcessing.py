@@ -1,7 +1,8 @@
 # coding=utf-8
 import pandas as pd
 import getData as gd
-x_training=[]# tap du lieu training da duoc bien doi
+x_training_notNull=[]# tap du lieu training da duoc bien doi khong null
+x_training=[]
 y_training=[]# label cho tap du lieu x_training
 traCuu=[]
 # xoa phan tu trung lap va cho gia tri unknown anh xa --> 0
@@ -28,7 +29,20 @@ def chuyen_dac_truong_sang_so(dac_trung_cu,mang_ganSoPhanLoai):
             if i==j[0]:
                 a.append([j[1]])
     return a;
-# bat dau chuyen cac dac trung sang vector so
+
+def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
+    a=[]
+    for i in dac_trung_cu:
+        for j in mang_ganSoPhanLoai:
+            if i==j[0] and i!= 'unknown':
+                a.append([j[1]])
+            elif  i== 'unknown' and i==j[0]:
+                a.append(" ")
+    return a;
+
+
+
+# bat dau chuyen cac dac trung sang vector so khong cho phep null
 tuoi=chuyen_dac_truong_sang_so(gd.tuoi, ganSoPhanLoai(xoaTrung(gd.tuoi)))
 nghe_nghiep=chuyen_dac_truong_sang_so(gd.nghe_nghiep, ganSoPhanLoai(xoaTrung(gd.nghe_nghiep)))
 hon_nhan=chuyen_dac_truong_sang_so(gd.hon_nhan, ganSoPhanLoai(xoaTrung(gd.hon_nhan)))
@@ -52,7 +66,7 @@ so_luong_nhan_vien=chuyen_dac_truong_sang_so(gd.so_luong_nhan_vien, ganSoPhanLoa
 
 # tao tap  du lieu x_training
 for i in range(len(tuoi)):
-    x_training.append([
+    x_training_notNull.append([
     tuoi[i]
     ,nghe_nghiep[i]
     ,hon_nhan[i]
@@ -99,8 +113,8 @@ traCuu.append(['lai_suat_3thang:18'])
 traCuu.append(['so_luong_nhan_vien:19'])
 
 
-
 #kiem thu
-#print(x_training[0])
+t1=chuyen_dac_truong_sang_so_co_Null(gd.co_the_tin_dung, ganSoPhanLoai(xoaTrung(gd.co_the_tin_dung)))
+print(t1)
 #print(traCuu)
 #print(y_training)
