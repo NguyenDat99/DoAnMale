@@ -1,3 +1,4 @@
+# coding=utf-8
 import dataProcessing as dp# tap du lieu su dung
 import matplotlib.pyplot as plt # thu vien ve cua python
 from sklearn.neighbors import KNeighborsClassifier # thu vien sklearn cho ho tro knn
@@ -16,10 +17,4 @@ from sklearn.metrics import precision_score
 
 
 
-
-print(dp.x_training_coLoc[0])
-print(dp.x_training_khongLoc[2])
-
-
-
-print("\t\t\t\t 4 ->  Xử lý thuật toán Knn thành công!")
+print("\t\t\t 4 ->  Xử lý thuật toán Knn thành công!")
