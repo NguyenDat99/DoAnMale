@@ -24,3 +24,5 @@ CCI=(DauVao['CCI'].values).tolist()
 lai_suat_3thang=(DauVao['lai_suat_3thang'].values).tolist()
 so_luong_nhan_vien=(DauVao['so_luong_nhan_vien'].values).tolist()
 label=(DauVao['label'].values).tolist()
+
+print("Kết nối dữ liệu thành công!")

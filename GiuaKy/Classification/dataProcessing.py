@@ -42,6 +42,7 @@ def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
 
 
 
+
 # bat dau chuyen cac dac trung sang vector so khong cho phep null
 tuoi=chuyen_dac_truong_sang_so(gd.tuoi, ganSoPhanLoai(xoaTrung(gd.tuoi)))
 nghe_nghiep=chuyen_dac_truong_sang_so(gd.nghe_nghiep, ganSoPhanLoai(xoaTrung(gd.nghe_nghiep)))
@@ -162,9 +163,4 @@ traCuu.append(['CCI: 17'])
 traCuu.append(['lai_suat_3thang: 18'])
 traCuu.append(['so_luong_nhan_vien: 19'])
 
-
-#kiem thu
-print(x_training_notNull[1])
-print(x_training[1])
-#print(traCuu)
-#print(y_training)
+print("Xử lý dữ liệu thành công!")
