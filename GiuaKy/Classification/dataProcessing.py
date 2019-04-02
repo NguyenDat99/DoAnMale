@@ -37,7 +37,7 @@ def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
             if i==j[0] and i!= 'unknown':
                 a.append([j[1]])
             elif  i== 'unknown' and i==j[0]:
-                a.append(" ")
+                a.append(None)
     return a;
 
 
@@ -141,26 +141,26 @@ for i in range(len(tuoi)):
 # tao tap du lieu y_training
 y_training=gd.label
 # tao bien tra cuu thong tin
-traCuu.append(['tuoi:0'])
-traCuu.append(['nghe_nghiep:1'])
-traCuu.append(['hon_nhan:2'])
-traCuu.append(['hoc_van:3'])
-traCuu.append(['co_the_tin_dung:4'])
-traCuu.append(['co_nha_o:5'])
-traCuu.append(['vay_ca_nhan:6'])
-traCuu.append(['kenh_lien_lac:7'])
-traCuu.append(['thang_lien_lac:8'])
-traCuu.append(['ngay_lien_lac:9'])
-traCuu.append(['thoi_luong_lien_lac:10'])
-traCuu.append(['so_luong_lien_lac:11'])
-traCuu.append(['ngay:12'])
-traCuu.append(['so_luong_lien_lac_truoc_day:13'])
-traCuu.append(['ket_qua_lan_truoc:14'])
-traCuu.append(['ti_le_thay_doi_viec_lam:15'])
-traCuu.append(['CPI:16'])
-traCuu.append(['CCI:17'])
-traCuu.append(['lai_suat_3thang:18'])
-traCuu.append(['so_luong_nhan_vien:19'])
+traCuu.append(['tuoi: 0'])
+traCuu.append(['nghe_nghiep: 1'])
+traCuu.append(['hon_nhan: 2'])
+traCuu.append(['hoc_van: 3'])
+traCuu.append(['co_the_tin_dung: 4'])
+traCuu.append(['co_nha_o: 5'])
+traCuu.append(['vay_ca_nhan: 6'])
+traCuu.append(['kenh_lien_lac: 7'])
+traCuu.append(['thang_lien_lac: 8'])
+traCuu.append(['ngay_lien_lac: 9'])
+traCuu.append(['thoi_luong_lien_lac: 10'])
+traCuu.append(['so_luong_lien_lac: 11'])
+traCuu.append(['ngay: 12'])
+traCuu.append(['so_luong_lien_lac_truoc_day: 13'])
+traCuu.append(['ket_qua_lan_truoc: 14'])
+traCuu.append(['ti_le_thay_doi_viec_lam: 15'])
+traCuu.append(['CPI: 16'])
+traCuu.append(['CCI: 17'])
+traCuu.append(['lai_suat_3thang: 18'])
+traCuu.append(['so_luong_nhan_vien: 19'])
 
 
 #kiem thu
