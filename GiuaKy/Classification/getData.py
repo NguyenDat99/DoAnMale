@@ -2,7 +2,6 @@
 import pandas as pd
 
 DauVao=pd.read_csv('./dataset/dataset_for_classification.csv',encoding='utf-8')
-
 # lay dataset tu file  len va cung cap method lay tung cot tuong ung cua dataset do
 tuoi=(DauVao['tuoi'].values).tolist()
 nghe_nghiep=(DauVao['nghe_nghiep'].values).tolist()
