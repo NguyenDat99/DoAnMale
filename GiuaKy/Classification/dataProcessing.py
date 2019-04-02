@@ -1,8 +1,8 @@
 # coding=utf-8
 import pandas as pd
 import DataAdapter as da
-x_training_notNull=[]# tap du lieu training da duoc bien doi khong null
-x_training=[]
+x_training_khongLoc=[]# tap du lieu training da duoc bien doi khong null
+x_training_coLoc=[]
 y_training=[]# label cho tap du lieu x_training
 traCuu=[]
 # xoa phan tu trung lap va cho gia tri unknown anh xa --> 0
@@ -89,9 +89,11 @@ CCI1=chuyen_dac_truong_sang_so_co_Null(da.CCI, ganSoPhanLoai(xoaTrung(da.CCI)))
 lai_suat_3thang1=chuyen_dac_truong_sang_so_co_Null(da.lai_suat_3thang, ganSoPhanLoai(xoaTrung(da.lai_suat_3thang)))
 so_luong_nhan_vien1=chuyen_dac_truong_sang_so_co_Null(da.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(da.so_luong_nhan_vien)))
 
-# tao tap  du lieu x_training_notNull
+
+
+# tao tap  du lieu x_training khong loc unknown
 for i in range(len(tuoi)):
-    x_training_notNull.append([
+    x_training_khongLoc.append([
     tuoi[i]
     ,nghe_nghiep[i]
     ,hon_nhan[i]
@@ -114,9 +116,9 @@ for i in range(len(tuoi)):
     ,so_luong_nhan_vien[i]
     ])
 
-# tao tap  du lieu x_training co null
+# tao tap  du lieu x_training co loc du lieu unknown
 for i in range(len(tuoi)):
-    x_training.append([
+    x_training_coLoc.append([
     tuoi1[i]
     ,nghe_nghiep1[i]
     ,hon_nhan1[i]
@@ -138,7 +140,14 @@ for i in range(len(tuoi)):
     ,lai_suat_3thang1[i]
     ,so_luong_nhan_vien1[i]
     ])
-
+# bat dau loc du lieu x_training_coLoc chua unknown
+i=len(x_training_coLoc)-1
+while i>=0:
+    if(i<len(x_training_coLoc)):
+        for j in x_training_coLoc[i]:
+            if j is None:
+                x_training_coLoc.pop(i)
+    i-=1
 # tao tap du lieu y_training
 y_training=da.label
 # tao bien tra cuu thong tin
