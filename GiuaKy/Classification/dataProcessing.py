@@ -27,7 +27,7 @@ def chuyen_dac_truong_sang_so(dac_trung_cu,mang_ganSoPhanLoai):
     for i in dac_trung_cu:
         for j in mang_ganSoPhanLoai:
             if i==j[0]:
-                a.append([j[1]])
+                a.append(j[1])
     return a;
 # ham chuyen cac dac trung ban dau thanh dang so neu gia tri unknown thi chuyen thanh null
 def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
@@ -35,7 +35,7 @@ def chuyen_dac_truong_sang_so_co_Null(dac_trung_cu,mang_ganSoPhanLoai):
     for i in dac_trung_cu:
         for j in mang_ganSoPhanLoai:
             if i==j[0] and i!= 'unknown':
-                a.append([j[1]])
+                a.append(j[1])
             elif  i== 'unknown' and i==j[0]:
                 a.append(None)
     return a;
@@ -163,4 +163,4 @@ traCuu.append(['CCI: 17'])
 traCuu.append(['lai_suat_3thang: 18'])
 traCuu.append(['so_luong_nhan_vien: 19'])
 
-print("Xử lý dữ liệu thành công!")
+print("\t\t\t\t 2 -> Xử lý dữ liệu thành công!")
