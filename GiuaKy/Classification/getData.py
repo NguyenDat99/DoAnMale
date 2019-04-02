@@ -1,36 +1,9 @@
 # coding=utf-8
 import pandas as pd
-x_training=[]
-y_training=[]
-class bangAnhXa:
-    def __init__(self,giatriCu,giatriMoi):
-        self.giatriCu=giatriCu
-        self.giatriMoi=giatriMoi
-def xoaTrung(a):
-    b=[]
-    for i in a:
-        if i not in b:
-            b.append(i)
-    return b
-def ganSoPhanLoai(mangXoaTrung):
-    b=[]
-    for i in range(len(mangXoaTrung)):
-        b.append([mangXoaTrung[i],i])
-    return b
-def chuyen_dac_truong_sang_so(dac_trung_cu,mang_ganSoPhanLoai):
-    a=[]
-    for i in dac_trung_cu:
-        for j in mang_ganSoPhanLoai:
-            if i==j[0]:
-                a.append([j[1]])
-    return a;
-
-
-
-
-
 
 DauVao=pd.read_csv('./dataset/dataset_for_classification.csv',encoding='utf-8')
+
+# lay dataset tu file  len va cung cap method lay tung cot tuong ung cua dataset do
 tuoi=(DauVao['tuoi'].values).tolist()
 nghe_nghiep=(DauVao['nghe_nghiep'].values).tolist()
 hon_nhan=(DauVao['hon_nhan'].values).tolist()
@@ -51,9 +24,3 @@ CPI=(DauVao['CPI'].values).tolist()
 CCI=(DauVao['CCI'].values).tolist()
 lai_suat_3thang=(DauVao['lai_suat_3thang'].values).tolist()
 so_luong_nhan_vien=(DauVao['so_luong_nhan_vien'].values).tolist()
-
-y_training=(DauVao['label'].values).tolist()
-
-
-
-print(xoaTrung(tuoi))
