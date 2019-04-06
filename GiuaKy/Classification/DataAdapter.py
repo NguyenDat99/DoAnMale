@@ -1,29 +1,39 @@
 # coding=utf-8
 import pandas as pd
-
 DauVao=pd.read_csv('./dataset/dataset_for_classification.csv',encoding='utf-8')
 # lay dataset tu file  len va cung cap method lay tung cot tuong ung cua dataset do
-tuoi=(DauVao['tuoi'].values).tolist()
-nghe_nghiep=(DauVao['nghe_nghiep'].values).tolist()
-hon_nhan=(DauVao['hon_nhan'].values).tolist()
-hoc_van=(DauVao['hoc_van'].values).tolist()
-co_the_tin_dung=(DauVao['co_the_tin_dung'].values).tolist()
-co_nha_o=(DauVao['co_nha_o'].values).tolist()
-vay_ca_nhan=(DauVao['vay_ca_nhan'].values).tolist()
-kenh_lien_lac=(DauVao['kenh_lien_lac'].values).tolist()
-thang_lien_lac=(DauVao['thang_lien_lac'].values).tolist()
-ngay_lien_lac=(DauVao['ngay_lien_lac'].values).tolist()
-thoi_luong_lien_lac=(DauVao['thoi_luong_lien_lac'].values).tolist()
-so_luong_lien_lac=(DauVao['so_luong_lien_lac'].values).tolist()
-ngay=(DauVao['ngay'].values).tolist()
-so_luong_lien_lac_truoc_day=(DauVao['so_luong_lien_lac_truoc_day'].values).tolist()
-ket_qua_lan_truoc=(DauVao['ket_qua_lan_truoc'].values).tolist()
-ti_le_thay_doi_viec_lam=(DauVao['ti_le_thay_doi_viec_lam'].values).tolist()
-CPI=(DauVao['CPI'].values).tolist()
-CCI=(DauVao['CCI'].values).tolist()
-lai_suat_3thang=(DauVao['lai_suat_3thang'].values).tolist()
-so_luong_nhan_vien=(DauVao['so_luong_nhan_vien'].values).tolist()
-label=(DauVao['label'].values).tolist()
+def getFeature(name):
+
+    if name=='thoi_luong_lien_lac':
+        o=[]
+        for i in DauVao[name].values:
+            o.append(int((i*13.999-13)/999))
+    else:
+            o=(DauVao[name].values).tolist()
+    return  o
+
+class dataset:
+    def __init__(seft):
+        seft.tuoi=getFeature('tuoi')
+        seft.nghe_nghiep=getFeature('nghe_nghiep')
+        seft.hon_nhan=getFeature('hon_nhan')
+        seft.hoc_van=getFeature('hoc_van')
+        seft.co_the_tin_dung=getFeature('co_the_tin_dung')
+        seft.co_nha_o=getFeature('co_nha_o')
+        seft.vay_ca_nhan=getFeature('vay_ca_nhan')
+        seft.kenh_lien_lac=getFeature('kenh_lien_lac')
+        seft.thang_lien_lac=getFeature('thang_lien_lac')
+        seft.ngay_lien_lac=getFeature('ngay_lien_lac')
+        seft.thoi_luong_lien_lac= getFeature('thoi_luong_lien_lac')
+        seft.so_luong_lien_lac=getFeature('so_luong_lien_lac')
+        seft.ngay=getFeature('ngay')
+        seft.so_luong_lien_lac_truoc_day=getFeature('so_luong_lien_lac_truoc_day')
+        seft.ket_qua_lan_truoc=getFeature('ket_qua_lan_truoc')
+        seft.ti_le_thay_doi_viec_lam=getFeature('ti_le_thay_doi_viec_lam')
+        seft.CPI=getFeature('CPI')
+        seft.CCI=getFeature('CCI')
+        seft.lai_suat_3thang=getFeature('lai_suat_3thang')
+        seft.so_luong_nhan_vien=getFeature('so_luong_nhan_vien')
+        seft.label=getFeature('label')
 
 print("\t\t\t 1 -> Kết nối dữ liệu thành công!")
-print("\t\t\t 2 -> Thông cảm chờ xíu đang load dữ liệu hơi lâu tí !")
