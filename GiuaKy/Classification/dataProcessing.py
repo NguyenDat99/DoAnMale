@@ -159,7 +159,7 @@ for i in range(len(tuoi1)):
             ,lai_suat_3thang1[i]
             ,so_luong_nhan_vien1[i]
             ])
-    # bat dau loc du lieu x_training_coLoc chua unknown
+# bat dau loc du lieu x_training_coLoc chua unknown
 y_training_CL=da.dataset().label
 i=len(x_training_CoLoc)-1
 while i>=0:

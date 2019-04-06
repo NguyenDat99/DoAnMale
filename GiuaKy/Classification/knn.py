@@ -13,8 +13,5 @@ clf=KNeighborsClassifier(n_neighbors=3).fit(x_train,y_train)
 precision= precision_score(y_test,clf.predict(x_test))
 recall= recall_score(y_test,clf.predict(x_test))
 
-print(len(dp.data_CoLoc(0)))
-print(len(dp.data_CoLoc(1)))
-print(recall)
 
 print("\t\t\t 4 ->  Xử lý thuật toán Knn thành công!")
