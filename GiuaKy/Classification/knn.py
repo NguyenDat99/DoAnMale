@@ -9,7 +9,7 @@ from sklearn.metrics import precision_score
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test=train_test_split(dp.data_CoLoc(0),dp.data_CoLoc(1),test_size=0.2)
 
-clf=KNeighborsClassifier(n_neighbors=3).fit(x_train,y_train)
+clf=KNeighborsClassifier(n_neighbors=499).fit(x_train,y_train)
 precision= precision_score(y_test,clf.predict(x_test))
 recall= recall_score(y_test,clf.predict(x_test))
 
