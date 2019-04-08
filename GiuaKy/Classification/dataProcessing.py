@@ -174,4 +174,4 @@ def data_CoLoc(k):
         return x_training_CoLoc
     elif k==1:
         return y_training_CL
-print("\t\t\t 3 -> Xử lý dữ liệu thành công!")
+print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
