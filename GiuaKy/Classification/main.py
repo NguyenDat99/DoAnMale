@@ -5,5 +5,7 @@ import svmKernel as svmk
 
 
 
-print(knn.recall)
-print(knn.precision)
+
+k=knn.ketQua(0)
+print(k.n_neighbors)
+print(k.F)

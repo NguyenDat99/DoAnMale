@@ -1,6 +1,8 @@
 # coding=utf-8
 import pandas as pd
+import datetime
 from multiprocessing.dummy import Pool as ThreadPool
+print("\t\t\t 0 -> chương trình bắt đầu chạy lúc %s" %datetime.datetime.now())
 DauVao=pd.read_csv('./dataset/dataset_for_classification.csv',encoding='utf-8')
 # lay dataset tu file  len va cung cap method lay tung cot tuong ung cua dataset do
 def getFeature(name):
