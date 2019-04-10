@@ -4,29 +4,6 @@ import DataAdapter as da
 from multiprocessing.dummy import Pool as ThreadPool
 
 dataset=da.dataset()
-# class traCuu:
-#     def __init__(seft):
-#         seft.tuoi='tuoi -> 0'
-#         seft.nghe_nghiep='nghe_nghiep -> 1'
-#         seft.hon_nhan='hon_nhan -> 2'
-#         seft.hoc_van='hoc_van -> 3'
-#         seft.co_the_tin_dung='co_the_tin_dung -> 4'
-#         seft.co_nha_o='co_nha_o -> 5'
-#         seft.vay_ca_nhan='vay_ca_nhan -> 6'
-#         seft.kenh_lien_lac='kenh_lien_lac -> 7'
-#         seft.thang_lien_lac='thang_lien_lac -> 8'
-#         seft.ngay_lien_lac='ngay_lien_lac -> 9'
-#         seft.thoi_luong_lien_lac='thoi_luong_lien_lac -> 10'
-#         seft.so_luong_lien_lac='so_luong_lien_lac -> 11'
-#         seft.ngay='ngay -> 12'
-#         seft.so_luong_lien_lac_truoc_day='so_luong_lien_lac_truoc_day -> 13'
-#         seft.ket_qua_lan_truoc='ket_qua_lan_truoc -> 14'
-#         seft.ti_le_thay_doi_viec_lam='ti_le_thay_doi_viec_lam -> 15'
-#         seft.CPI='CPI -> 16'
-#         seft.CCI='CCI -> 17'
-#         seft.lai_suat_3thang='lai_suat_3thang -> 18'
-#         seft.so_luong_nhan_vien='so_luong_nhan_vien -> 19'
-
 # xoa phan tu trung lap va cho gia tri unknown anh xa --> 0
 def xoaTrung(a):
     b=[]

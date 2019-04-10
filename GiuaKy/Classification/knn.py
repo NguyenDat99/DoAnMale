@@ -8,8 +8,6 @@ from sklearn.neighbors import KNeighborsClassifier
 #Đánh giá
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
-#thời gian chạy
-import datetime
 #tap du lieu training va testing
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
@@ -126,6 +124,27 @@ def ketQua(k):
         return xuLy_knn_CoLoc()
     elif k==1:
         return xuLy_knn_KhongLoc()
+def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe,ngauNhien):
+    if chonBoDuLieu==0:
+        t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
+        'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
+        'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
+        'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
+        'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+        'so_luong_nhan_vien']
+        mangVe=[]
+        for i in len(t):
+            if t[i] in mangCacDacTrungVe:
+                mangVe.append(i)
+        #if ngauNhien==0:
+            #plt.scatter(x_train[:,0],x_train[:,1], c=y_train)
+            #plt.scatter(x_test[:,0],x_test[:,1], c=y_test,s=100)
+            #plt.xlabel("X")
+            #plt.ylabel("Y")
+            #plt.title("Phân loại 3 lớp!")
+            #plt.show()
+#ax1.scatter(x[:4], y[:4], s=10, c='b', marker="s", label='first')
+# ax1.scatter(x[40:],y[40:], s=10, c='r', marker="o", label='second')
 
                                         #help()
 def help():
