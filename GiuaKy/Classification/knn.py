@@ -28,29 +28,25 @@ class good_KNN:
 def n_neighbors(k):
     n_neighbors=[]
     if k==0:
-        for i in range(100):
+        for i in range(15):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==1:
-        for i in range(100,200):
+        for i in range(15,30):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==2:
-        for i in range(200,300):
+        for i in range(30,42):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==3:
-        for i in range(300,400):
+        for i in range(42,50):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==4:
-        for i in range(400,500):
-            if i%2 !=0:
-                n_neighbors.append(i)
-    elif k==5:
-        for i in range(500,600):
-            if i%2 !=0:
-                n_neighbors.append(i)
+       for i in range(50,62):
+          if i%2 !=0:
+              n_neighbors.append(i)
     return n_neighbors
 def timF_CoLoc(n,good_KNN_CoLoc):
     weights=['uniform','distance']
@@ -92,32 +88,29 @@ def xuLy_knn_CoLoc():
     good_KNN_CoLoc=good_KNN(0,0,0)
     print("\t\t 1%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(0),good_KNN_CoLoc)
-    print("\t\t 8%")
+    print("\t\t 10%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(1),good_KNN_CoLoc)
     print("\t\t 16%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(2),good_KNN_CoLoc)
-    print("\t\t 24%")
+    print("\t\t 36%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
-    print("\t\t 32%")
-    good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
     print("\t\t 40%")
-    good_KNN_CoLoc=timF_CoLoc(n_neighbors(5),good_KNN_CoLoc)
+    good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
+    print("\t\t 46%")
     return good_KNN_CoLoc
 def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=good_KNN(0,0,0)
-    print("\t\t 48%")
+    print("\t\t 52%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(0),good_KNN_KhongLoc)
-    print("\t\t 56%")
+    print("\t\t 69%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(1),good_KNN_KhongLoc)
-    print("\t\t 64%")
+    print("\t\t 82%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(2),good_KNN_KhongLoc)
-    print("\t\t 72%")
+    print("\t\t 90%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
-    print("\t\t 80%")
+    print("\t\t 92%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
-    print("\t\t 88%")
-    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(5),good_KNN_KhongLoc)
-    print("\t\t 96%")
+    print("\t\t 95%")
     return good_KNN_KhongLoc
 def ketQua(k):
     if k==0:
@@ -125,26 +118,31 @@ def ketQua(k):
     elif k==1:
         return xuLy_knn_KhongLoc()
 def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe,ngauNhien):
+    if len(mangCacDacTrungVe)>2:
+             return False
+    t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
+         'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
+         'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
+         'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
+         'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+         'so_luong_nhan_vien']
+    m=[]
+    for i in range(20):
+        if t[i] in mangCacDacTrungVe:
+            m.append(i)
     if chonBoDuLieu==0:
-        t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
-        'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
-        'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
-        'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
-        'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
-        'so_luong_nhan_vien']
         mangVe=[]
-        for i in len(t):
-            if t[i] in mangCacDacTrungVe:
-                mangVe.append(i)
-        #if ngauNhien==0:
-            #plt.scatter(x_train[:,0],x_train[:,1], c=y_train)
-            #plt.scatter(x_test[:,0],x_test[:,1], c=y_test,s=100)
-            #plt.xlabel("X")
-            #plt.ylabel("Y")
-            #plt.title("Phân loại 3 lớp!")
-            #plt.show()
-#ax1.scatter(x[:4], y[:4], s=10, c='b', marker="s", label='first')
-# ax1.scatter(x[40:],y[40:], s=10, c='r', marker="o", label='second')
+        for i in range(soLuongDiemVe):
+            mangVe.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],y_train_CoLoc[i]])
+        plt.scatter(mangVe[0],mangVe[1],c=mangVe[2],label=mangVe[2])
+        plt.show()
+    elif chonBoDuLieu==1:
+        mangVe=[]
+        for i in range(soLuongDiemVe):
+            mangVe.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
+        plt.scatter(mangVe[0],mangVe[1],c=mangVe[2],label=mangVe[2])
+        plt.show()
+
 
                                         #help()
 def help():
