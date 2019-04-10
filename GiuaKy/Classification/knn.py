@@ -40,11 +40,11 @@ def n_neighbors(k):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==3:
-        for i in range(42,50):
+        for i in range(42,47):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==4:
-       for i in range(50,62):
+       for i in range(47,56):
           if i%2 !=0:
               n_neighbors.append(i)
     return n_neighbors
