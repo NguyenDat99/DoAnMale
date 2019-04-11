@@ -40,11 +40,11 @@ def n_neighbors(k):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==3:
-        for i in range(42,47):
+        for i in range(42,50):
             if i%2 !=0:
                 n_neighbors.append(i)
     elif k==4:
-       for i in range(47,56):
+       for i in range(52,56):
           if i%2 !=0:
               n_neighbors.append(i)
     return n_neighbors
@@ -63,7 +63,7 @@ def timF_CoLoc(n,good_KNN_CoLoc):
     if F_CoLoc>good_KNN_CoLoc.F:
             good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_CoLoc)
-            print(u"\t\t tìm ra F_CoLoc mới")
+            print(u"\t\t tìm ra F_CoLoc=%s mới"%F_CoLoc)
     return good_KNN_CoLoc
 
 def timF_KhongLoc(n,good_KNN_KhongLoc):
@@ -81,7 +81,7 @@ def timF_KhongLoc(n,good_KNN_KhongLoc):
     if F_KhongLoc>good_KNN_KhongLoc.F:
             good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_KhongLoc)
-            print(u"\t\t tìm ra F_KhongLoc mới")
+            print(u"\t\t tìm ra F_KhongLoc=%s mới"%F_KhongLoc)
     return good_KNN_CoLoc
 
 def xuLy_knn_CoLoc():
