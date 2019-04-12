@@ -12,6 +12,7 @@ from sklearn.model_selection import GridSearchCV
 #----------------------------------------------------------------------
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(dp.data_CoLoc(0),dp.data_CoLoc(1),test_size=0.5)
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(dp.data_khongLoc(0),dp.data_khongLoc(1),test_size=0.5)
+#tim gamma tốt nhất
 gammaArr = []
 accurArr = []
 for i in range(1,10):
