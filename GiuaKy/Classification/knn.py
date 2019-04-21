@@ -63,7 +63,7 @@ def timF_CoLoc(n,good_KNN_CoLoc):
     if F_CoLoc>good_KNN_CoLoc.F:
             good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_CoLoc)
-            print(u"\t\t tìm ra F_CoLoc=%s mới"%F_CoLoc)
+            print("\t F_CoLoc=%s"%F_CoLoc)
     return good_KNN_CoLoc
 
 def timF_KhongLoc(n,good_KNN_KhongLoc):
@@ -81,42 +81,25 @@ def timF_KhongLoc(n,good_KNN_KhongLoc):
     if F_KhongLoc>good_KNN_KhongLoc.F:
             good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_KhongLoc)
-            print(u"\t\t tìm ra F_KhongLoc=%s mới"%F_KhongLoc)
+            print("\t  F_KhongLoc=%s "%F_KhongLoc)
     return good_KNN_CoLoc
 
 def xuLy_knn_CoLoc():
     good_KNN_CoLoc=good_KNN(0,0,0)
-    print("\t\t 1%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(0),good_KNN_CoLoc)
-    print("\t\t 10%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(1),good_KNN_CoLoc)
-    print("\t\t 16%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(2),good_KNN_CoLoc)
-    print("\t\t 36%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
-    print("\t\t 40%")
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
-    print("\t\t 46%")
     return good_KNN_CoLoc
 def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=good_KNN(0,0,0)
-    print("\t\t 52%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(0),good_KNN_KhongLoc)
-    print("\t\t 69%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(1),good_KNN_KhongLoc)
-    print("\t\t 82%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(2),good_KNN_KhongLoc)
-    print("\t\t 90%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
-    print("\t\t 92%")
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
-    print("\t\t 95%")
     return good_KNN_KhongLoc
-def ketQua(k):
-    if k==0:
-        return xuLy_knn_CoLoc()
-    elif k==1:
-        return xuLy_knn_KhongLoc()
 def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe,ngauNhien):
     if len(mangCacDacTrungVe)>2:
              return False
@@ -142,8 +125,8 @@ def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe,ngauNhien):
             mangVe.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
         plt.scatter(mangVe[0],mangVe[1],c=mangVe[2],label=mangVe[2])
         plt.show()
-
-
-                                        #help()
-def help():
-    print(u"Cú pháp")
+def ketQua(k):
+    if k==0:
+        return xuLy_knn_CoLoc()
+    elif k==1:
+        return xuLy_knn_KhongLoc()

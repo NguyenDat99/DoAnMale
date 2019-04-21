@@ -36,8 +36,21 @@ def chuyen_dac_truong_sang_so(dac_trung_cu,mang_ganSoPhanLoai,f):
                 elif  i== 'unknown' and i==j[0]:
                     a.append(None)
     return a;
+def traSoThuTu(ten):
+    t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
+    'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
+    'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
+    'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
+    'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+    'so_luong_nhan_vien']
+    for i in range(len(t)):
+        if t[i]==ten:
+            return i;
+    return -1;
 # bat dau chuyen cac dac trung sang  so khong cho phep null
-def data_khongLoc(k):
+def data_khongLoc(_k,array):
+    k=[]
+    data=[]
     tuoi=chuyen_dac_truong_sang_so(dataset.tuoi, ganSoPhanLoai(xoaTrung(dataset.tuoi)),0)
     nghe_nghiep=chuyen_dac_truong_sang_so(dataset.nghe_nghiep, ganSoPhanLoai(xoaTrung(dataset.nghe_nghiep)),0)
     hon_nhan=chuyen_dac_truong_sang_so(dataset.hon_nhan, ganSoPhanLoai(xoaTrung(dataset.hon_nhan)),0)
@@ -84,10 +97,23 @@ def data_khongLoc(k):
             ,lai_suat_3thang[i]
             ,so_luong_nhan_vien[i]
             ])
-    if(k==0):
+    if _k==0 and array is None:
         return x_training_khongLoc
-    elif k==1:
+    elif _k==1 and array is None:
         return da.dataset().label
+    elif array is not  None:
+        if len(array)>19:
+            return None;
+        else:
+            for i in array:
+                if traSoThuTu(i)!=-1:
+                    k.append(traSoThuTu(i))
+            for i in range(len(x_training_khongLoc)):
+                k1=[]
+                for j in k:
+                    k1.append(x_training_khongLoc[i][j])
+                data.append(k1)
+            return data;
 
 # bat dau chuyen cac dac trung sang vector so cho phep null
 tuoi1=chuyen_dac_truong_sang_so(dataset.tuoi, ganSoPhanLoai(xoaTrung(dataset.tuoi)),1)
@@ -146,9 +172,36 @@ while i>=0:
                 y_training_CL.pop(i)
                 break
     i-=1
-def data_CoLoc(k):
-    if k==0:
+def data_CoLoc(_k,array):
+    k=[]
+    data=[]
+    if _k==0 and array is None:
         return x_training_CoLoc
-    elif k==1:
+    elif _k==1 and array is None:
         return y_training_CL
+    elif array is not  None:
+        if len(array)>19:
+            return None;
+        else:
+            for i in array:
+                if traSoThuTu(i)!=-1:
+                    k.append(traSoThuTu(i))
+            for i in range(len(x_training_CoLoc)):
+                k1=[]
+                for j in k:
+                    k1.append(x_training_CoLoc[i][j])
+                data.append(k1)
+            return data;
 print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
+
+
+
+
+
+
+#cu phap coi day nhe
+# print(data_khongLoc(0,None)[2])
+# print(data_khongLoc(0,['tuoi','nghe_nghiep','hon_nhan','kenh_lien_lac','so_luong_nhan_vien'])[2])
+# print("___")
+# print(data_CoLoc(0,None)[0])
+# print(data_CoLoc(0,['tuoi','nghe_nghiep','hon_nhan','kenh_lien_lac','so_luong_nhan_vien'])[0])
