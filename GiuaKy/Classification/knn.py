@@ -8,12 +8,16 @@ from sklearn.neighbors import KNeighborsClassifier
 #Đánh giá
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
+#xu ly matrix
+import numpy as np
+#sinh so ngau ngau nhien
+import random
 #tap du lieu training va testing
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import learning_curve, GridSearchCV
-x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(dp.data_CoLoc(0),dp.data_CoLoc(1),test_size=0.2)
-x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(dp.data_khongLoc(0),dp.data_khongLoc(1),test_size=0.2)
+x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(dp.data_CoLoc(0,None),dp.data_CoLoc(1,None),test_size=0.2)
+x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(dp.data_khongLoc(0,None),dp.data_khongLoc(1,None),test_size=0.2)
 
 
                                 # Tim nhung parameters tot nhat
@@ -100,30 +104,41 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
-def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe,ngauNhien):
+def traSoThuTu(ten):
+    t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
+    'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
+    'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
+    'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
+    'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+    'so_luong_nhan_vien']
+    for i in range(len(t)):
+        if t[i]==ten:
+            return i;
+    return -1;
+def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
+    if soLuongDiemVe>len(x_train_CoLoc) and chonBoDuLieu==0:
+        return None
+    if soLuongDiemVe>len(x_train_KhongLoc) and chonBoDuLieu==1:
+        return None
     if len(mangCacDacTrungVe)>2:
              return False
-    t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
-         'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
-         'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
-         'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
-         'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
-         'so_luong_nhan_vien']
     m=[]
-    for i in range(20):
-        if t[i] in mangCacDacTrungVe:
-            m.append(i)
+    for i in mangCacDacTrungVe:
+        if traSoThuTu(i)!=-1:
+            m.append(traSoThuTu(i))
     if chonBoDuLieu==0:
         mangVe=[]
         for i in range(soLuongDiemVe):
             mangVe.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],y_train_CoLoc[i]])
-        plt.scatter(mangVe[0],mangVe[1],c=mangVe[2],label=mangVe[2])
+        mangVe=np.array(mangVe)
+        plt.scatter(mangVe[:,0],mangVe[:,1],c=mangVe[:,2],label=mangVe[:,2])
         plt.show()
     elif chonBoDuLieu==1:
         mangVe=[]
         for i in range(soLuongDiemVe):
             mangVe.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
-        plt.scatter(mangVe[0],mangVe[1],c=mangVe[2],label=mangVe[2])
+        mangVe=np.array(mangVe)
+        plt.scatter(mangVe[:,0],mangVe[:,1],c=mangVe[:,2],label=mangVe[:,2])
         plt.show()
 def ketQua(k):
     if k==0:
