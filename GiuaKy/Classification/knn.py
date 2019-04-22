@@ -10,8 +10,6 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 #xu ly matrix
 import numpy as np
-#sinh so ngau ngau nhien
-import random
 #tap du lieu training va testing
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
