@@ -5,7 +5,7 @@ import svmKernel as svmk
 import matplotlib.pyplot as plt
 
 
-k=knn.Ve(1,['hon_nhan','hoc_van'],4100)
-# print(k.F)
-# print(k.n_neighbors)
-# print(k.weights)
+k=knn.ketQua(0)
+print(k.F)
+print(k.n_neighbors)
+print(k.weights)

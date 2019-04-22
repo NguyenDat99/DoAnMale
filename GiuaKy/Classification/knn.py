@@ -52,6 +52,7 @@ def n_neighbors(k):
           if i%2 !=0:
               n_neighbors.append(i)
     return n_neighbors
+# tim F cho tap du lieu co loc
 def timF_CoLoc(n,good_KNN_CoLoc):
     weights=['uniform','distance']
     knn = KNeighborsClassifier()
@@ -69,7 +70,7 @@ def timF_CoLoc(n,good_KNN_CoLoc):
             grid.best_estimator_.n_neighbors,F_CoLoc)
             print("\t F_CoLoc=%s"%F_CoLoc)
     return good_KNN_CoLoc
-
+# tim F cho tap du lieu khong loc
 def timF_KhongLoc(n,good_KNN_KhongLoc):
     weights=['uniform','distance']
     knn = KNeighborsClassifier()
@@ -87,7 +88,7 @@ def timF_KhongLoc(n,good_KNN_KhongLoc):
             grid.best_estimator_.n_neighbors,F_KhongLoc)
             print("\t  F_KhongLoc=%s "%F_KhongLoc)
     return good_KNN_CoLoc
-
+#Xu ly tinh toan cho tap du lieu co loc
 def xuLy_knn_CoLoc():
     good_KNN_CoLoc=good_KNN(0,0,0)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(0),good_KNN_CoLoc)
@@ -96,6 +97,7 @@ def xuLy_knn_CoLoc():
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
     return good_KNN_CoLoc
+#Xu ly tinh toan cho tap du lieu khong loc
 def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=good_KNN(0,0,0)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(0),good_KNN_KhongLoc)
@@ -104,6 +106,7 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
+#tra ve vi tri cac dac trung cung cap cho ham ve
 def traSoThuTu(ten):
     t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
     'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
@@ -115,6 +118,8 @@ def traSoThuTu(ten):
         if t[i]==ten:
             return i;
     return -1;
+
+#ve 2 dac trung trong cac dac trung
 def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     if soLuongDiemVe>len(x_train_CoLoc) and chonBoDuLieu==0:
         return None
