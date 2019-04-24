@@ -115,7 +115,7 @@ x_training_CoLoc=[]
 for i in range(len(tuoi1)):
             x_training_CoLoc.append([
             tuoi1[i]
-            # ,nghe_nghiep1[i]
+            #,nghe_nghiep1[i]
             # ,hon_nhan1[i]
             # ,hoc_van1[i]
             # ,co_the_tin_dung1[i]
