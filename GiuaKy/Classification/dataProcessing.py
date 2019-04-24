@@ -2,7 +2,6 @@
 import pandas as pd
 import DataAdapter as da
 from multiprocessing.dummy import Pool as ThreadPool
-
 dataset=da.dataset()
 # xoa phan tu trung lap va cho gia tri unknown anh xa --> 0
 def xoaTrung(a):
@@ -193,8 +192,6 @@ def data_CoLoc(_k,array):
                 data.append(k1)
             return data;
 print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
-
-
 
 
 
