@@ -129,20 +129,29 @@ def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     for i in mangCacDacTrungVe:
         if traSoThuTu(i)!=-1:
             m.append(traSoThuTu(i))
+    mangVe0=[]
+    mangVe1=[]
     if chonBoDuLieu==0:
-        mangVe=[]
         for i in range(soLuongDiemVe):
-            mangVe.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],y_train_CoLoc[i]])
-        mangVe=np.array(mangVe)
-        plt.scatter(mangVe[:,0],mangVe[:,1],c=mangVe[:,2],label=mangVe[:,2])
-        plt.show()
+            if y_train_CoLoc[i] ==0:
+                mangVe0.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],y_train_CoLoc[i]])
+            elif y_train_CoLoc[i]==1:
+                mangVe1.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],y_train_CoLoc[i]])
     elif chonBoDuLieu==1:
-        mangVe=[]
         for i in range(soLuongDiemVe):
-            mangVe.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
-        mangVe=np.array(mangVe)
-        plt.scatter(mangVe[:,0],mangVe[:,1],c=mangVe[:,2],label=mangVe[:,2])
-        plt.show()
+            if y_train_KhongLoc[i]==0:
+                mangVe0.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
+            elif y_train_KhongLoc[i]==1:
+                mangVe1.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
+    mangVe0=np.array(mangVe0)
+    mangVe1=np.array(mangVe1)
+    plt.scatter(mangVe0[:,0],mangVe0[:,1],marker="*",label="Thất bại",s=100)
+    plt.scatter(mangVe1[:,0],mangVe1[:,1],marker="x",label="Thành công",s=100)
+    plt.xlabel(mangCacDacTrungVe[0])
+    plt.ylabel(mangCacDacTrungVe[1])
+    plt.title("Biểu đồ phân 2 lớp sử dụng knn")
+    plt.legend(loc='upper left')
+    plt.show()
 def ketQua(k):
     if k==0:
         return xuLy_knn_CoLoc()
