@@ -3,6 +3,7 @@
 import dataProcessing as dp
 # thu vien ve cua python
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 # thu vien sklearn cho ho tro knn
 from sklearn.neighbors import KNeighborsClassifier
 #Đánh giá
@@ -116,14 +117,18 @@ def traSoThuTu(ten):
         if t[i]==ten:
             return i;
     return -1;
-
+def ketQua(k):
+    if k==0:
+        return xuLy_knn_CoLoc()
+    elif k==1:
+        return xuLy_knn_KhongLoc()
 #ve 2 dac trung trong cac dac trung
-def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
+def Ve2D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     if soLuongDiemVe>len(x_train_CoLoc) and chonBoDuLieu==0:
         return None
     if soLuongDiemVe>len(x_train_KhongLoc) and chonBoDuLieu==1:
         return None
-    if len(mangCacDacTrungVe)>2:
+    if len(mangCacDacTrungVe)!=2:
              return False
     m=[]
     for i in mangCacDacTrungVe:
@@ -145,15 +150,49 @@ def Ve(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
                 mangVe1.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],y_train_KhongLoc[i]])
     mangVe0=np.array(mangVe0)
     mangVe1=np.array(mangVe1)
-    plt.scatter(mangVe0[:,0],mangVe0[:,1],marker="*",label="Thất bại",s=100)
-    plt.scatter(mangVe1[:,0],mangVe1[:,1],marker="x",label="Thành công",s=100)
+    plt.scatter(mangVe0[:,0],mangVe0[:,1],marker="x",label="Thất bại",s=100)
+    plt.scatter(mangVe1[:,0],mangVe1[:,1],marker="*",label="Thành công",s=100)
     plt.xlabel(mangCacDacTrungVe[0])
     plt.ylabel(mangCacDacTrungVe[1])
     plt.title("Biểu đồ phân 2 lớp sử dụng knn")
     plt.legend(loc='upper left')
     plt.show()
-def ketQua(k):
-    if k==0:
-        return xuLy_knn_CoLoc()
-    elif k==1:
-        return xuLy_knn_KhongLoc()
+
+
+def Ve3D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
+    if soLuongDiemVe>len(x_train_CoLoc) and chonBoDuLieu==0:
+        return None
+    if soLuongDiemVe>len(x_train_KhongLoc) and chonBoDuLieu==1:
+        return None
+    if len(mangCacDacTrungVe)!=3:
+             return False
+    m=[]
+    for i in mangCacDacTrungVe:
+        if traSoThuTu(i)!=-1:
+            m.append(traSoThuTu(i))
+    mangVe0=[]
+    mangVe1=[]
+    if chonBoDuLieu==0:
+        for i in range(soLuongDiemVe):
+            if y_train_CoLoc[i] ==0:
+                mangVe0.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],x_train_CoLoc[i][m[2]],y_train_CoLoc[i]])
+            elif y_train_CoLoc[i]==1:
+                mangVe1.append([x_train_CoLoc[i][m[0]],x_train_CoLoc[i][m[1]],x_train_CoLoc[i][m[2]],y_train_CoLoc[i]])
+    elif chonBoDuLieu==1:
+        for i in range(soLuongDiemVe):
+            if y_train_KhongLoc[i]==0:
+                mangVe0.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],x_train_KhongLoc[i][m[2]],y_train_KhongLoc[i]])
+            elif y_train_KhongLoc[i]==1:
+                mangVe1.append([x_train_KhongLoc[i][m[0]],x_train_KhongLoc[i][m[1]],x_train_KhongLoc[i][m[2]],y_train_KhongLoc[i]])
+    mangVe0=np.array(mangVe0)
+    mangVe1=np.array(mangVe1)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(mangVe0[:,0],mangVe0[:,1],mangVe0[:,2],marker="x",label="Thất bại",s=100)
+    ax.scatter(mangVe1[:,0],mangVe1[:,1],mangVe1[:,2],marker="*",label="Thành công",s=100)
+    ax.set_xlabel(mangCacDacTrungVe[0])
+    ax.set_ylabel(mangCacDacTrungVe[1])
+    ax.set_zlabel(mangCacDacTrungVe[2])
+    plt.title("Biểu đồ phân 2 lớp sử dụng knn")
+    plt.legend(loc='lower left')
+    plt.show()
