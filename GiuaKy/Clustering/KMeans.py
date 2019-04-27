@@ -124,10 +124,15 @@ def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(mangVe[:,0], mangVe[:,1], mangVe[:,2], marker='o',c=mangVe[:,3])
-    ax.scatter(centroids[:,0],centroids[:,1],alpha=0.5,marker=r'$\clubsuit$',c='g',s=200,label="centroid")
+    ax.scatter(centroids[:,0],centroids[:,1],centroids[:,2],alpha=0.5,marker=r'$\clubsuit$',c='g',s=200,label="centroid")
     ax.set_xlabel(mangCacDacTrungVe[0])
     ax.set_ylabel(mangCacDacTrungVe[1])
     ax.set_zlabel(mangCacDacTrungVe[2])
     plt.title("Biểu đồ 3d phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
     ax.legend(loc='lower left')
     plt.show()
+
+def help():
+    print("\nhelp:\t\t.veTimSoCluster(mangCacDacTrung,diemBatDau,diemKetThuc)\n")
+    print("\t\t.veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,so cum)\n")
+    print("\t\t.veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,so cum)\n")

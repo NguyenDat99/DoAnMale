@@ -196,3 +196,11 @@ def Ve3D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     plt.title("Biểu đồ phân 2 lớp sử dụng knn")
     plt.legend(loc='lower left')
     plt.show()
+
+def help():
+    print("\nhelp:\t\t.Ve2D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe)\n")
+    print("\t\t.Ve3D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe)\n")
+    print("\t\t\tchonBoDuLieu: 0 -> du lieu co Loc\n")
+    print("\t\t\t              1 -> du lieu khong Loc\n")
+    print("\t\t.ketQua(k) tra ve gia tri F voi k: 0 -> du lieu co Loc\n")
+    print("\t\t                                k: 1 -> du lieu khong Loc\n")

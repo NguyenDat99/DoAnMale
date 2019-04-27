@@ -2,7 +2,6 @@
 import pandas as pd
 import datetime
 from multiprocessing.dummy import Pool as ThreadPool
-print("\t\t\t 0 -> chương trình bắt đầu chạy lúc %s" %datetime.datetime.now())
 DauVao=pd.read_csv('./dataset/dataset_for_clustering.csv',encoding='utf-8')
 
 def getFeature(name):
@@ -33,5 +32,23 @@ class dataset:
         seft.loai_truyen_dong=data[9]
         seft.so_luong_banh_rang=data[10]
         seft.so_luong_bo_che_hoa_khi=data[11]
-
-print("\t\t\t 1 -> Kết nối dữ liệu thành công!")
+def xuatFile(KMeans_labels_,HC_labels_):
+    data=dataset()
+    df = pd.DataFrame({
+    'ten_xe': data.ten_xe,
+    'luong_hao_xang': data.luong_hao_xang,
+    'so_luong_xi_lanh':data.so_luong_xi_lanh,
+    'the_tich_dong_co':data.the_tich_dong_co,
+    'ma_luc':data.ma_luc,
+    'ty_le_truc_sau':data.ty_le_truc_sau,
+    'khoi_luong_xe':data.khoi_luong_xe,
+    'gia_toc_xe':data.gia_toc_xe,
+    'loai_xy_lanh_dong_co':data.loai_xy_lanh_dong_co,
+    'loai_truyen_dong':data.loai_truyen_dong,
+    'so_luong_banh_rang':data.so_luong_banh_rang,
+    'so_luong_bo_che_hoa_khi':data.so_luong_bo_che_hoa_khi,
+    'labels_':KMeans_labels_,
+    'HC_labels_':HC_labels_
+    })
+    df.to_csv('./dataset/ketqua.csv',encoding='utf-8',index=False)
+    print("\t\t\t   -> Xuất dữ liệu thành công!")
