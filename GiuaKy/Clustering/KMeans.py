@@ -134,5 +134,6 @@ def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
 
 def help():
     print("\nhelp:\t\t.veTimSoCluster(mangCacDacTrung,diemBatDau,diemKetThuc)\n")
+    print("\t\t.KMean(mangCacDacTrung,n_clusters) \n")
     print("\t\t.veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,so cum)\n")
     print("\t\t.veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,so cum)\n")

@@ -47,7 +47,7 @@ def xuatFile(KMeans_labels_,HC_labels_):
     'loai_truyen_dong':data.loai_truyen_dong,
     'so_luong_banh_rang':data.so_luong_banh_rang,
     'so_luong_bo_che_hoa_khi':data.so_luong_bo_che_hoa_khi,
-    'labels_':KMeans_labels_,
+    'KMeans_labels_':KMeans_labels_,
     'HC_labels_':HC_labels_
     })
     df.to_csv('./dataset/ketqua.csv',encoding='utf-8',index=False)
