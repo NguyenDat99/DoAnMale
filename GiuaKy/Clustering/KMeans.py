@@ -2,6 +2,7 @@ import dataProcessing as dp
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
 
 def lay_data():
     data=dp.dataset(['luong_hao_xang',
@@ -52,12 +53,12 @@ def traSoThuTu(ten):
     return -1;
 
 
-def veDacTrung(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
+def veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     #kiem tra dieu kien
     if soLuongDiemVe is not None :
         if soLuongDiemVe > len(data):
             return None
-    if len(mangCacDacTrungVe)>2:
+    if len(mangCacDacTrungVe)!=2:
         return None
     m=[]
     for i in mangCacDacTrungVe:
@@ -86,6 +87,47 @@ def veDacTrung(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     plt.scatter(centroids[:,0],centroids[:,1],alpha=0.5,marker=r'$\clubsuit$',c='g',s=200,label="centroid")
     plt.xlabel(mangCacDacTrungVe[0])
     plt.ylabel(mangCacDacTrungVe[1])
-    plt.title("Biểu đồ phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
+    plt.title("Biểu đồ 2d phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
     plt.legend(loc='upper left')
+    plt.show()
+
+def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
+    #kiem tra dieu kien
+    if soLuongDiemVe is not None :
+        if soLuongDiemVe > len(data):
+            return None
+    if len(mangCacDacTrungVe)!=3:
+        return None
+    m=[]
+    for i in mangCacDacTrungVe:
+        if traSoThuTu(i)!=-1:
+            m.append(traSoThuTu(i))
+    mangVe=[]
+    # xac dinh dac trung ve va dac trung tinh toan
+    if mangCacDacTrung is None:
+        kmeans=KMean(mangCacDacTrungVe,_Kmean)
+    else:
+        kmeans=KMean(mangCacDacTrung,_Kmean)
+    # <--     -->
+
+    #tien hanh ve
+    data=lay_data()
+    if soLuongDiemVe is None:
+        for i in range(len(data)):
+            mangVe.append([data[i][m[0]],data[i][m[1]],data[i][m[2]],kmeans.labels_[i]])
+    else:
+        for i in range(soLuongDiemVe):
+            mangVe.append([data[i][m[0]],data[i][m[1]],data[i][m[2]],kmeans.labels_[i]])
+    centroids=kmeans.cluster_centers_
+    mangVe=np.array(mangVe)
+    centroids=np.array(centroids)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(mangVe[:,0], mangVe[:,1], mangVe[:,2], marker='o',c=mangVe[:,3])
+    ax.scatter(centroids[:,0],centroids[:,1],alpha=0.5,marker=r'$\clubsuit$',c='g',s=200,label="centroid")
+    ax.set_xlabel(mangCacDacTrungVe[0])
+    ax.set_ylabel(mangCacDacTrungVe[1])
+    ax.set_zlabel(mangCacDacTrungVe[2])
+    plt.title("Biểu đồ 3d phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
+    ax.legend(loc='lower left')
     plt.show()
