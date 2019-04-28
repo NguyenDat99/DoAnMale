@@ -15,8 +15,18 @@ import numpy as np
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import learning_curve, GridSearchCV
-x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(dp.data_CoLoc(0,None),dp.data_CoLoc(1,None),test_size=0.2)
-x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(dp.data_khongLoc(0,None),dp.data_khongLoc(1,None),test_size=0.2)
+
+x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
+dp.data_CoLoc(0,None),
+dp.data_CoLoc(1,None),
+test_size=0.2)
+
+x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
+dp.data_khongLoc(0,None
+),
+dp.data_khongLoc(1,None
+),
+test_size=0.2)
 
 
                                 # Tim nhung parameters tot nhat
@@ -67,15 +77,15 @@ def timF_CoLoc(n,good_KNN_CoLoc):
     if F_CoLoc>good_KNN_CoLoc.F:
             good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_CoLoc)
-            print("\t F_CoLoc=%s"%F_CoLoc)
     return good_KNN_CoLoc
+
 # tim F cho tap du lieu khong loc
 def timF_KhongLoc(n,good_KNN_KhongLoc):
     weights=['uniform','distance']
     knn = KNeighborsClassifier()
     param_grid = dict(n_neighbors=n, weights=weights)
     grid = GridSearchCV(knn, param_grid, cv=10, scoring='accuracy')
-    grid.fit(x_test_CoLoc, y_test_CoLoc)
+    grid.fit(x_test_KhongLoc, y_test_KhongLoc)
     #du lieu khong loc
     clf=KNeighborsClassifier(n_neighbors=grid.best_estimator_.n_neighbors,weights=grid.best_estimator_.weights).fit(x_train_KhongLoc,y_train_KhongLoc)
     precision= precision_score(y_test_KhongLoc,clf.predict(x_test_KhongLoc), average='weighted')
@@ -83,10 +93,10 @@ def timF_KhongLoc(n,good_KNN_KhongLoc):
     F_KhongLoc=(2*precision*recall)/(precision+recall)
 #so sanh
     if F_KhongLoc>good_KNN_KhongLoc.F:
-            good_KNN_CoLoc=good_KNN(grid.best_estimator_.weights,
+            good_KNN_KhongLoc=good_KNN(grid.best_estimator_.weights,
             grid.best_estimator_.n_neighbors,F_KhongLoc)
-            print("\t  F_KhongLoc=%s "%F_KhongLoc)
-    return good_KNN_CoLoc
+    return good_KNN_KhongLoc
+
 #Xu ly tinh toan cho tap du lieu co loc
 def xuLy_knn_CoLoc():
     good_KNN_CoLoc=good_KNN(0,0,0)
@@ -105,6 +115,21 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
+
+def ketQua(k):
+    if k==0:
+        return xuLy_knn_CoLoc()
+    elif k==1:
+        return xuLy_knn_KhongLoc()
+
+
+
+
+
+                                #Ve
+
+
+
 #tra ve vi tri cac dac trung cung cap cho ham ve
 def traSoThuTu(ten):
     t=['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
@@ -117,11 +142,7 @@ def traSoThuTu(ten):
         if t[i]==ten:
             return i;
     return -1;
-def ketQua(k):
-    if k==0:
-        return xuLy_knn_CoLoc()
-    elif k==1:
-        return xuLy_knn_KhongLoc()
+
 #ve 2 dac trung trong cac dac trung
 def Ve2D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     if soLuongDiemVe>len(x_train_CoLoc) and chonBoDuLieu==0:
@@ -196,6 +217,9 @@ def Ve3D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe):
     plt.title("Biểu đồ phân 2 lớp sử dụng knn")
     plt.legend(loc='lower left')
     plt.show()
+
+
+                                #help
 
 def help():
     print("\nhelp:\t\t.Ve2D(chonBoDuLieu,mangCacDacTrungVe,soLuongDiemVe)\n")
