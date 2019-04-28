@@ -65,7 +65,7 @@ x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_
 #print(classification_report(y_test_KhongLoc, y_pred))
 
 ''' vẽ '''
-x_column = dp.data_CoLoc(0) 
+x_column = dp.data_CoLoc(0)
 y_column = dp.data_CoLoc(1)
 z_column = dp.data_CoLoc(2)
 

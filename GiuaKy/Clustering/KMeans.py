@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
+
 def lay_data():
     data=dp.dataset(['luong_hao_xang',
     'so_luong_xi_lanh','the_tich_dong_co',
@@ -29,12 +30,12 @@ def KMean(mangCacDacTrung,n_clusters):
 
 
 def veTimSoCluster(mangCacDacTrung,diemBatDau,diemKetThuc):
-    cluster=[]
+    clusters=[]
     for i in range(diemBatDau,diemKetThuc):
         kmeans = KMean(mangCacDacTrung,i)
-        cluster.append([i,kmeans.inertia_])
-    cluster=np.array(cluster)
-    plt.plot(cluster[:,0],cluster[:,1],'-o',c='g',marker="+")
+        clusters.append([i,kmeans.inertia_])
+    clusters=np.array(clusters)
+    plt.plot(clusters[:,0],clusters[:,1],'-o',c='g',marker="+")
     plt.xlabel("K")
     plt.ylabel("Inertia")
     plt.title("Biểu đồ phân tích Kmeans ")
@@ -53,7 +54,8 @@ def traSoThuTu(ten):
     return -1;
 
 
-def veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
+def veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,n_clusters):
+    data=lay_data()
     #kiem tra dieu kien
     if soLuongDiemVe is not None :
         if soLuongDiemVe > len(data):
@@ -67,13 +69,11 @@ def veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     mangVe=[]
     # xac dinh dac trung ve va dac trung tinh toan
     if mangCacDacTrung is None:
-        kmeans=KMean(mangCacDacTrungVe,_Kmean)
+        kmeans=KMean(mangCacDacTrungVe,n_clusters)
     else:
-        kmeans=KMean(mangCacDacTrung,_Kmean)
+        kmeans=KMean(mangCacDacTrung,n_clusters)
     # <--     -->
-
     #tien hanh ve
-    data=lay_data()
     if soLuongDiemVe is None:
         for i in range(len(data)):
             mangVe.append([data[i][m[0]],data[i][m[1]],kmeans.labels_[i]])
@@ -87,11 +87,12 @@ def veDacTrung2D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     plt.scatter(centroids[:,0],centroids[:,1],alpha=0.5,marker=r'$\clubsuit$',c='g',s=200,label="centroid")
     plt.xlabel(mangCacDacTrungVe[0])
     plt.ylabel(mangCacDacTrungVe[1])
-    plt.title("Biểu đồ 2d phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
+    plt.title("Biểu đồ 2d phân cụm cho Kmeans ứng với %s cụm" %n_clusters)
     plt.legend(loc='upper left')
     plt.show()
 
-def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
+def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,n_clusters):
+    data=lay_data()
     #kiem tra dieu kien
     if soLuongDiemVe is not None :
         if soLuongDiemVe > len(data):
@@ -105,13 +106,12 @@ def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     mangVe=[]
     # xac dinh dac trung ve va dac trung tinh toan
     if mangCacDacTrung is None:
-        kmeans=KMean(mangCacDacTrungVe,_Kmean)
+        kmeans=KMean(mangCacDacTrungVe,n_clusters)
     else:
-        kmeans=KMean(mangCacDacTrung,_Kmean)
+        kmeans=KMean(mangCacDacTrung,n_clusters)
     # <--     -->
 
     #tien hanh ve
-    data=lay_data()
     if soLuongDiemVe is None:
         for i in range(len(data)):
             mangVe.append([data[i][m[0]],data[i][m[1]],data[i][m[2]],kmeans.labels_[i]])
@@ -128,7 +128,7 @@ def veDacTrung3D(mangCacDacTrung,mangCacDacTrungVe,soLuongDiemVe,_Kmean):
     ax.set_xlabel(mangCacDacTrungVe[0])
     ax.set_ylabel(mangCacDacTrungVe[1])
     ax.set_zlabel(mangCacDacTrungVe[2])
-    plt.title("Biểu đồ 3d phân cụm cho Kmeans ứng với %s cụm" %_Kmean)
+    plt.title("Biểu đồ 3d phân cụm cho Kmeans ứng với %s cụm" %n_clusters)
     ax.legend(loc='lower left')
     plt.show()
 
