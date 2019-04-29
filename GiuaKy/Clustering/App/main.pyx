@@ -4,7 +4,7 @@ import KMeans
 import Hc
 import dataProcessing as dp
             # KMeans
-def KM():
+def km():
     #KMeans.help()
     KMeans.veTimSoCluster(['luong_hao_xang',
     'so_luong_xi_lanh','the_tich_dong_co',
@@ -37,6 +37,3 @@ def hc():
             #xuatFile
 def xuatFile(km,hc):
     dp.xuatFile(km,hc)
-
-
-xuatFile(KM(),hc())

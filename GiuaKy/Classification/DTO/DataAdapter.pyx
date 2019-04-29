@@ -51,4 +51,5 @@ class dataset:
         seft.so_luong_nhan_vien=data[19]
         seft.label=data[20]
 
+
 print("\t\t\t 1 -> Kết nối dữ liệu thành công!")
