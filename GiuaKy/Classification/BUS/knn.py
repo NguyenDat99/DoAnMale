@@ -21,7 +21,7 @@ from sklearn.model_selection import learning_curve, GridSearchCV
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
 dp.data_CoLoc(0,None),
 dp.data_CoLoc(1,None),
-test_size=0.2)
+test_size=0.1)
 
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
 dp.data_khongLoc(0,None

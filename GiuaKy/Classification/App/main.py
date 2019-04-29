@@ -4,6 +4,7 @@ import knn
 
 def KNN():
     #knn.help()
+    print(u"\tKnn bắt đầu chạy:")
     kq0=knn.ketQua(0)
     kq1=knn.ketQua(1)
     print(u"\tDữ liệu có lọc:")

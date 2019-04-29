@@ -55,7 +55,6 @@ def traSoThuTu(ten):
 def data_khongLoc(_k,array):
     k=[]
     data=[]
-    tuoi=chuyen_dac_truong_sang_so(dataset.tuoi, ganSoPhanLoai(xoaTrung(dataset.tuoi)),0)
     nghe_nghiep=chuyen_dac_truong_sang_so(dataset.nghe_nghiep, ganSoPhanLoai(xoaTrung(dataset.nghe_nghiep)),0)
     hon_nhan=chuyen_dac_truong_sang_so(dataset.hon_nhan, ganSoPhanLoai(xoaTrung(dataset.hon_nhan)),0)
     hoc_van=chuyen_dac_truong_sang_so(dataset.hoc_van, ganSoPhanLoai(xoaTrung(dataset.hoc_van)),0)
@@ -65,16 +64,17 @@ def data_khongLoc(_k,array):
     kenh_lien_lac=chuyen_dac_truong_sang_so(dataset.kenh_lien_lac, ganSoPhanLoai(xoaTrung(dataset.kenh_lien_lac)),0)
     thang_lien_lac=chuyen_dac_truong_sang_so(dataset.thang_lien_lac, ganSoPhanLoai(xoaTrung(dataset.thang_lien_lac)),0)
     ngay_lien_lac=chuyen_dac_truong_sang_so(dataset.ngay_lien_lac, ganSoPhanLoai(xoaTrung(dataset.ngay_lien_lac)),0)
-    thoi_luong_lien_lac=chuyen_dac_truong_sang_so(dataset.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(dataset.thoi_luong_lien_lac)),0)
-    so_luong_lien_lac=chuyen_dac_truong_sang_so(dataset.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(dataset.so_luong_lien_lac)),0)
     ngay=chuyen_dac_truong_sang_so(dataset.ngay, ganSoPhanLoai(xoaTrung(dataset.ngay)),0)
-    so_luong_lien_lac_truoc_day=chuyen_dac_truong_sang_so(dataset.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(dataset.so_luong_lien_lac_truoc_day)),0)
     ket_qua_lan_truoc=chuyen_dac_truong_sang_so(dataset.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(dataset.ket_qua_lan_truoc)),0)
-    ti_le_thay_doi_viec_lam=chuyen_dac_truong_sang_so(dataset.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(dataset.ti_le_thay_doi_viec_lam)),0)
-    CPI=chuyen_dac_truong_sang_so(dataset.CPI, ganSoPhanLoai(xoaTrung(dataset.CPI)),0)
-    CCI=chuyen_dac_truong_sang_so(dataset.CCI, ganSoPhanLoai(xoaTrung(dataset.CCI)),0)
-    lai_suat_3thang=chuyen_dac_truong_sang_so(dataset.lai_suat_3thang, ganSoPhanLoai(xoaTrung(dataset.lai_suat_3thang)),0)
-    so_luong_nhan_vien=chuyen_dac_truong_sang_so(dataset.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(dataset.so_luong_nhan_vien)),0)
+    tuoi=dataset.tuoi
+    thoi_luong_lien_lac=dataset.thoi_luong_lien_lac
+    so_luong_lien_lac=dataset.so_luong_lien_lac
+    so_luong_lien_lac_truoc_day=dataset.so_luong_lien_lac_truoc_day
+    ti_le_thay_doi_viec_lam=dataset.ti_le_thay_doi_viec_lam
+    CPI=dataset.CPI
+    CCI=dataset.CCI
+    lai_suat_3thang=dataset.lai_suat_3thang
+    so_luong_nhan_vien=dataset.so_luong_nhan_vien
 
     x_training_khongLoc=[]
     # tao tap  du lieu x_training khong loc unknown
@@ -120,7 +120,6 @@ def data_khongLoc(_k,array):
             return data;
 
 # bat dau chuyen cac dac trung sang vector so cho phep null
-tuoi1=chuyen_dac_truong_sang_so(dataset.tuoi, ganSoPhanLoai(xoaTrung(dataset.tuoi)),1)
 nghe_nghiep1=chuyen_dac_truong_sang_so(dataset.nghe_nghiep, ganSoPhanLoai(xoaTrung(dataset.nghe_nghiep)),1)
 hon_nhan1=chuyen_dac_truong_sang_so(dataset.hon_nhan, ganSoPhanLoai(xoaTrung(dataset.hon_nhan)),1)
 hoc_van1=chuyen_dac_truong_sang_so(dataset.hoc_van, ganSoPhanLoai(xoaTrung(dataset.hoc_van)),1)
@@ -130,16 +129,17 @@ vay_ca_nhan1=chuyen_dac_truong_sang_so(dataset.vay_ca_nhan, ganSoPhanLoai(xoaTru
 kenh_lien_lac1=chuyen_dac_truong_sang_so(dataset.kenh_lien_lac, ganSoPhanLoai(xoaTrung(dataset.kenh_lien_lac)),1)
 thang_lien_lac1=chuyen_dac_truong_sang_so(dataset.thang_lien_lac, ganSoPhanLoai(xoaTrung(dataset.thang_lien_lac)),1)
 ngay_lien_lac1=chuyen_dac_truong_sang_so(dataset.ngay_lien_lac, ganSoPhanLoai(xoaTrung(dataset.ngay_lien_lac)),1)
-thoi_luong_lien_lac1=chuyen_dac_truong_sang_so(dataset.thoi_luong_lien_lac, ganSoPhanLoai(xoaTrung(dataset.thoi_luong_lien_lac)),1)
-so_luong_lien_lac1=chuyen_dac_truong_sang_so(dataset.so_luong_lien_lac, ganSoPhanLoai(xoaTrung(dataset.so_luong_lien_lac)),1)
 ngay1=chuyen_dac_truong_sang_so(dataset.ngay, ganSoPhanLoai(xoaTrung(dataset.ngay)),1)
-so_luong_lien_lac_truoc_day1=chuyen_dac_truong_sang_so(dataset.so_luong_lien_lac_truoc_day, ganSoPhanLoai(xoaTrung(dataset.so_luong_lien_lac_truoc_day)),1)
 ket_qua_lan_truoc1=chuyen_dac_truong_sang_so(dataset.ket_qua_lan_truoc, ganSoPhanLoai(xoaTrung(dataset.ket_qua_lan_truoc)),1)
-ti_le_thay_doi_viec_lam1=chuyen_dac_truong_sang_so(dataset.ti_le_thay_doi_viec_lam, ganSoPhanLoai(xoaTrung(dataset.ti_le_thay_doi_viec_lam)),1)
-CPI1=chuyen_dac_truong_sang_so(dataset.CPI, ganSoPhanLoai(xoaTrung(dataset.CPI)),1)
-CCI1=chuyen_dac_truong_sang_so(dataset.CCI, ganSoPhanLoai(xoaTrung(dataset.CCI)),1)
-lai_suat_3thang1=chuyen_dac_truong_sang_so(dataset.lai_suat_3thang, ganSoPhanLoai(xoaTrung(dataset.lai_suat_3thang)),1)
-so_luong_nhan_vien1=chuyen_dac_truong_sang_so(dataset.so_luong_nhan_vien, ganSoPhanLoai(xoaTrung(dataset.so_luong_nhan_vien)),1)
+tuoi1=dataset.tuoi
+thoi_luong_lien_lac1=dataset.thoi_luong_lien_lac
+so_luong_lien_lac1=dataset.so_luong_lien_lac
+so_luong_lien_lac_truoc_day1=dataset.so_luong_lien_lac_truoc_day
+ti_le_thay_doi_viec_lam1=dataset.ti_le_thay_doi_viec_lam
+CPI1=dataset.CPI
+CCI1=dataset.CCI
+lai_suat_3thang1=dataset.lai_suat_3thang
+so_luong_nhan_vien1=dataset.so_luong_nhan_vien
 # tao tap  du lieu x_training co loc du lieu unknown
 x_training_CoLoc=[]
 for i in range(len(tuoi1)):
@@ -197,7 +197,6 @@ def data_CoLoc(_k,array):
                 data.append(k1)
             return data;
 print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
-
 
 
 
