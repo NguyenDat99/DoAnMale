@@ -17,20 +17,64 @@ import numpy as np
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import learning_curve, GridSearchCV
+#sinh tổ hợp
+from itertools import permutations
 
+
+
+def sinhToHop(k):
+    perm = permutations(['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
+    'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
+    'ngay_lien_lac','thoi_luong_lien_lac','so_luong_lien_lac',
+    'ngay','so_luong_lien_lac_truoc_day','ket_qua_lan_truoc',
+    'ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+    'so_luong_nhan_vien'],k)
+    array=[]
+    for i in list(perm):
+         array.append(i)
+    return array
+class nhungDacTrungTotNhat:
+    def __init__(seft,array,F):
+        seft.array=array
+        seft.F=F
+
+def NhungDacTrungTotNhat(k):
+    NDTTN=nhungDacTrungTotNhat(0,0)
+    for i in range(10):
+        x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
+        dp.data_khongLoc(0,sinhToHop(k)[i]),dp.data_khongLoc(1,None),test_size=0.2)
+        clf=KNeighborsClassifier(n_neighbors=13).fit(x_train_KhongLoc,y_train_KhongLoc)
+        precision= precision_score(y_test_KhongLoc,clf.predict(x_test_KhongLoc), average='weighted')
+        recall= recall_score(y_test_KhongLoc,clf.predict(x_test_KhongLoc), average='weighted')
+        F_KhongLoc=(2*precision*recall)/(precision+recall)
+        if F_KhongLoc>NDTTN.F:
+            NDTTN.array=sinhToHop(k)[i]
+            NDTTN.F=F_KhongLoc
+    return NDTTN
+
+def timNhungDacTrungTotNhat():
+    NDTTN=nhungDacTrungTotNhat(0,0)
+    for i in range(3,20):
+        tmp=NhungDacTrungTotNhat(i)
+        if tmp.F>NDTTN.F:
+            NDTTN.array=tmp.array
+            NDTTN.F=tmp.F
+    return NDTTN
+
+
+#tap du lieu
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
-dp.data_CoLoc(0,None),
+dp.data_CoLoc(0,timNhungDacTrungTotNhat().array),
 dp.data_CoLoc(1,None),
 test_size=0.1)
 
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
-dp.data_khongLoc(0,None
-),
-dp.data_khongLoc(1,None
-),
-test_size=0.2)
+dp.data_khongLoc(0,timNhungDacTrungTotNhat().array),
+dp.data_khongLoc(1,None),test_size=0.2)
 
-                                # Tim nhung parameters tot nhat
+
+
+                # Tim nhung parameters tot nhat
 # object luu param tot nhat
 class good_KNN:
     def __init__(seft,weights,n_neighbors,F):
@@ -61,6 +105,10 @@ def n_neighbors(k):
        for i in range(52,56):
           if i%2 !=0:
               n_neighbors.append(i)
+    elif k==5:
+           for i in range(56,100):
+              if i%2 !=0:
+                  n_neighbors.append(i)
     return n_neighbors
 # tim F cho tap du lieu co loc
 def timF_CoLoc(n,good_KNN_CoLoc):
@@ -106,6 +154,7 @@ def xuLy_knn_CoLoc():
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(2),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
+    good_KNN_CoLoc=timF_CoLoc(n_neighbors(5),good_KNN_CoLoc)
     return good_KNN_CoLoc
 #Xu ly tinh toan cho tap du lieu khong loc
 def xuLy_knn_KhongLoc():
@@ -115,6 +164,7 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(2),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
+    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(5),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
 
 def ketQua(k):
