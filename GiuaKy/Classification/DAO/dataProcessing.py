@@ -196,7 +196,7 @@ def data_CoLoc(_k,array):
                     k1.append(x_training_CoLoc[i][j])
                 data.append(k1)
             return data;
-print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
+#print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
 
 
 

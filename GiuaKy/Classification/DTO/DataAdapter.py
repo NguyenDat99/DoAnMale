@@ -4,7 +4,7 @@ import datetime
 from multiprocessing.dummy import Pool as ThreadPool
 
 
-print("\t\t\t 0 -> chương trình bắt đầu chạy lúc %s" %datetime.datetime.now())
+#print("\t\t\t 0 -> chương trình bắt đầu chạy lúc %s" %datetime.datetime.now())
 DauVao=pd.read_csv('../DTO/dataset/dataset_for_classification.csv',encoding='utf-8')
 # lay dataset tu file  len va cung cap method lay tung cot tuong ung cua dataset do
 def getFeature(name):
@@ -52,4 +52,4 @@ class dataset:
         seft.label=data[20]
 
 
-print("\t\t\t 1 -> Kết nối dữ liệu thành công!")
+#print("\t\t\t 1 -> Kết nối dữ liệu thành công!")
