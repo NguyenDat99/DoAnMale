@@ -196,13 +196,5 @@ def data_CoLoc(_k,array):
                     k1.append(x_training_CoLoc[i][j])
                 data.append(k1)
             return data;
-#print("\t\t\t 2 -> Xử lý dữ liệu thành công!")
 
-
-
-#cu phap coi day nhe
-# print(data_khongLoc(0,None)[2])
-# print(data_khongLoc(0,['tuoi','nghe_nghiep','hon_nhan','kenh_lien_lac','so_luong_nhan_vien'])[2])
-# print("___")
-# print(data_CoLoc(0,None)[0])
-# print(data_CoLoc(0,['tuoi','nghe_nghiep','hon_nhan','kenh_lien_lac','so_luong_nhan_vien'])[0])
+print("\t\t\t2. Xu ly du lieu thanh cong")

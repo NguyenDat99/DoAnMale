@@ -40,7 +40,7 @@ class nhungDacTrungTotNhat:
 
 def NhungDacTrungTotNhat(k):
     NDTTN=nhungDacTrungTotNhat(0,0)
-    for i in range(10):
+    for i in range(100):
         x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
         dp.data_khongLoc(0,sinhToHop(k)[i]),dp.data_khongLoc(1,None),test_size=0.2)
         clf=KNeighborsClassifier(n_neighbors=13).fit(x_train_KhongLoc,y_train_KhongLoc)
@@ -59,7 +59,6 @@ def timNhungDacTrungTotNhat():
         if tmp.F>NDTTN.F:
             NDTTN.array=tmp.array
             NDTTN.F=tmp.F
-        print(i)
     x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
     dp.data_khongLoc(0,None),dp.data_khongLoc(1,None),test_size=0.2)
     clf=KNeighborsClassifier(n_neighbors=13).fit(x_train_KhongLoc,y_train_KhongLoc)
@@ -76,7 +75,7 @@ def timNhungDacTrungTotNhat():
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
 dp.data_CoLoc(0,timNhungDacTrungTotNhat().array),
 dp.data_CoLoc(1,None),
-test_size=0.1)
+test_size=0.2)
 
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
 dp.data_khongLoc(0,timNhungDacTrungTotNhat().array),
@@ -116,9 +115,17 @@ def n_neighbors(k):
           if i%2 !=0:
               n_neighbors.append(i)
     elif k==5:
-           for i in range(56,100):
-              if i%2 !=0:
-                  n_neighbors.append(i)
+        for i in range(56,74):
+            if i%2 !=0:
+                n_neighbors.append(i)
+    elif k==6:
+        for i in range(74,82):
+            if i%2 !=0:
+                n_neighbors.append(i)
+    elif k==7:
+        for i in range(82,100):
+            if i%2 !=0:
+                n_neighbors.append(i)
     return n_neighbors
 # tim F cho tap du lieu co loc
 def timF_CoLoc(n,good_KNN_CoLoc):
@@ -165,6 +172,8 @@ def xuLy_knn_CoLoc():
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(5),good_KNN_CoLoc)
+    good_KNN_CoLoc=timF_CoLoc(n_neighbors(6),good_KNN_CoLoc)
+    good_KNN_CoLoc=timF_CoLoc(n_neighbors(7),good_KNN_CoLoc)
     return good_KNN_CoLoc
 #Xu ly tinh toan cho tap du lieu khong loc
 def xuLy_knn_KhongLoc():
@@ -175,6 +184,8 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(5),good_KNN_KhongLoc)
+    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(6),good_KNN_KhongLoc)
+    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(7),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
 
 def ketQua(k):
