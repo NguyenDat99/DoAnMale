@@ -19,9 +19,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import learning_curve, GridSearchCV
 #sinh tổ hợp
 from itertools import permutations
+#cross-validation
+from sklearn.model_selection import cross_val_score
 
-
-
+                #sinh to hop
 def sinhToHop(k):
     perm = permutations(['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
     'co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac',
@@ -72,14 +73,34 @@ def timNhungDacTrungTotNhat():
 
 
 #tap du lieu
+# x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
+# dp.data_CoLoc(0,timNhungDacTrungTotNhat().array),
+# dp.data_CoLoc(1,None),
+# test_size=0.2)
+#
+# x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
+# dp.data_khongLoc(0,timNhungDacTrungTotNhat().array),
+# dp.data_khongLoc(1,None),test_size=0.2)
+
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(
-dp.data_CoLoc(0,timNhungDacTrungTotNhat().array),
+dp.data_CoLoc(0,None),
 dp.data_CoLoc(1,None),
-test_size=0.2)
+test_size=0.2,random_state=1)
 
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
-dp.data_khongLoc(0,timNhungDacTrungTotNhat().array),
-dp.data_khongLoc(1,None),test_size=0.2)
+dp.data_khongLoc(0,None),
+dp.data_khongLoc(1,None),test_size=0.2,random_state=1)
+
+
+                            #cross-validation
+def cross_Validation(n_neighbors,X,Y):
+    knn_cv = KNeighborsClassifier(n_neighbors=n_neighbors)
+    cv_scores = cross_val_score(knn_cv, X,Y, cv=10)
+    print("\n cross_Validation:\n")
+    print(cv_scores)
+    print("cv_scores mean:{}".format(np.mean(cv_scores)))
+
+
 
 
 
@@ -116,14 +137,6 @@ def n_neighbors(k):
               n_neighbors.append(i)
     elif k==5:
         for i in range(56,74):
-            if i%2 !=0:
-                n_neighbors.append(i)
-    elif k==6:
-        for i in range(74,82):
-            if i%2 !=0:
-                n_neighbors.append(i)
-    elif k==7:
-        for i in range(82,100):
             if i%2 !=0:
                 n_neighbors.append(i)
     return n_neighbors
@@ -172,8 +185,6 @@ def xuLy_knn_CoLoc():
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(3),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(4),good_KNN_CoLoc)
     good_KNN_CoLoc=timF_CoLoc(n_neighbors(5),good_KNN_CoLoc)
-    good_KNN_CoLoc=timF_CoLoc(n_neighbors(6),good_KNN_CoLoc)
-    good_KNN_CoLoc=timF_CoLoc(n_neighbors(7),good_KNN_CoLoc)
     return good_KNN_CoLoc
 #Xu ly tinh toan cho tap du lieu khong loc
 def xuLy_knn_KhongLoc():
@@ -184,23 +195,29 @@ def xuLy_knn_KhongLoc():
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(3),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(4),good_KNN_KhongLoc)
     good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(5),good_KNN_KhongLoc)
-    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(6),good_KNN_KhongLoc)
-    good_KNN_KhongLoc=timF_KhongLoc(n_neighbors(7),good_KNN_KhongLoc)
     return good_KNN_KhongLoc
 
 def ketQua(k):
     if k==0:
-        return xuLy_knn_CoLoc()
-    elif k==1:
-        return xuLy_knn_KhongLoc()
+        cross_Validation(13,dp.data_CoLoc(0,None),dp.data_CoLoc(1,None))
+        x= xuLy_knn_CoLoc()
+        print("Du lieu co loc: ")
+        print("n_neighbors=%s"%x.n_neighbors)
+        print("weights=%s"%x.weights)
+        print("F=%s"%x.F)
 
+    elif k==1:
+        cross_Validation(13,dp.data_khongLoc(0,None),dp.data_khongLoc(1,None))
+        x= xuLy_knn_KhongLoc()
+        print("Du lieu khong loc: ")
+        print("n_neighbors=%s"%x.n_neighbors)
+        print("weights=%s"%x.weights)
+        print("F=%s"%x.F)
 
 
 
 
                                 #Ve
-
-
 
 #tra ve vi tri cac dac trung cung cap cho ham ve
 def traSoThuTu(ten):
