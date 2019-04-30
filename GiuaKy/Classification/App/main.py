@@ -17,3 +17,5 @@ def KNN():
     print("F=%s"%kq1.F)
     #knn.Ve2D(0,['hoc_van','nghe_nghiep'],50)
     #knn.Ve3D(1,['hoc_van','nghe_nghiep','thoi_luong_lien_lac'],30000)
+
+KNN()
