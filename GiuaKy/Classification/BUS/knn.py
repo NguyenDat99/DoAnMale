@@ -54,13 +54,14 @@ def NhungDacTrungTotNhat(k):
 
 def timNhungDacTrungTotNhat():
     NDTTN=nhungDacTrungTotNhat(0,0)
-    for i in range(3,10):
+    for i in range(3,7):
         tmp=NhungDacTrungTotNhat(i)
         if tmp.F>NDTTN.F:
             NDTTN.array=tmp.array
             NDTTN.F=tmp.F
+        print(i)
     x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
-    dp.data_khongLoc(0,None,dp.data_khongLoc(1,None),test_size=0.2)
+    dp.data_khongLoc(0,None),dp.data_khongLoc(1,None),test_size=0.2)
     clf=KNeighborsClassifier(n_neighbors=13).fit(x_train_KhongLoc,y_train_KhongLoc)
     precision= precision_score(y_test_KhongLoc,clf.predict(x_test_KhongLoc), average='weighted')
     recall= recall_score(y_test_KhongLoc,clf.predict(x_test_KhongLoc), average='weighted')
