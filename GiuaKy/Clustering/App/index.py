@@ -1,5 +1,6 @@
 import main as m
 
 
-m.km()
-m.hc()
+km=m.km()
+hc=m.hc()
+m.xuatFile(km,hc)

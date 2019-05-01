@@ -205,7 +205,6 @@ def ketQua(k):
         print("n_neighbors=%s"%x.n_neighbors)
         print("weights=%s"%x.weights)
         print("F=%s"%x.F)
-
     elif k==1:
         cross_Validation(13,dp.data_khongLoc(0,None),dp.data_khongLoc(1,None))
         x= xuLy_knn_KhongLoc()
