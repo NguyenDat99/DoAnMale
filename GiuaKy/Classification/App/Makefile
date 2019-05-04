@@ -4,6 +4,5 @@ all:
 	rm ../BUS/*.c
 	rm ../DAO/*.c
 	rm ../DTO/*.c
+	clear
 	python3 index.py
-	rm -rf build
-	rm *.so

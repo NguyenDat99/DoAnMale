@@ -22,6 +22,8 @@ from itertools import permutations
 #cross-validation
 from sklearn.model_selection import cross_val_score
 
+
+
                 #sinh to hop
 def sinhToHop(k):
     perm = permutations(['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung',
@@ -88,8 +90,13 @@ dp.data_CoLoc(1,None),
 test_size=0.2,random_state=1)
 
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(
-dp.data_khongLoc(0,None),
-dp.data_khongLoc(1,None),test_size=0.2,random_state=1)
+dp.data_khongLoc(0,['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung'
+,'vay_ca_nhan','kenh_lien_lac','thang_lien_lac'
+,'thoi_luong_lien_lac','so_luong_lien_lac',
+'ngay','ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+'so_luong_nhan_vien']),
+dp.data_khongLoc(1,None),
+test_size=0.2,random_state=1)
 
 
                             #cross-validation
@@ -99,8 +106,6 @@ def cross_Validation(n_neighbors,X,Y):
     print("\n cross_Validation:\n")
     print(cv_scores)
     print("cv_scores mean:{}".format(np.mean(cv_scores)))
-
-
 
 
 
@@ -206,7 +211,13 @@ def ketQua(k):
         print("weights=%s"%x.weights)
         print("F=%s"%x.F)
     elif k==1:
-        cross_Validation(13,dp.data_khongLoc(0,None),dp.data_khongLoc(1,None))
+        cross_Validation(13,dp.data_khongLoc(0,
+        ['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung'
+        ,'vay_ca_nhan','kenh_lien_lac','thang_lien_lac'
+        ,'thoi_luong_lien_lac','so_luong_lien_lac',
+        'ngay','ti_le_thay_doi_viec_lam','CPI','CCI','lai_suat_3thang',
+        'so_luong_nhan_vien']
+        ),dp.data_khongLoc(1,None))
         x= xuLy_knn_KhongLoc()
         print("Du lieu khong loc: ")
         print("n_neighbors=%s"%x.n_neighbors)
