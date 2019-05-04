@@ -2,6 +2,8 @@ import sys
 sys.path.append('../BUS/')
 import knn
 import svm
+import naiveBayes
+import svmKernel
 
 def KNN():
     #knn.help()
@@ -14,3 +16,8 @@ def KNN():
 
 def SVM():
     svm.gridsvc()
+
+def SVM_Kelnels():
+
+
+def NB():
