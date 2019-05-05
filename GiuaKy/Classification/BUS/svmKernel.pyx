@@ -37,6 +37,10 @@ def ketQua():
     grid1 = GridSearchCV(SVC(), tuned_parameters, cv=5)
     grid1.fit(x_train_KhongLoc, y_train_KhongLoc)
     print("parameter tốt nhất khong lọc %s with a score of %0.2f"% (grid1.best_params_, grid1.best_score_))
+    clf = SVC(kernel='rbf',gamma=0.01,C=10) # rbf Kernel
+    clf.fit(x_train_KhongLoc, y_train_KhongLoc)
+    y_pred = clf.predict(x_test_KhongLoc)
+    print("Accuracy:",metrics.accuracy_score(y_test_KhongLoc, y_pred))
 #vẽ visualize
 def ve():
     X=dp.data_CoLoc(0,['tuoi','nghe_nghiep'])  # Lấy hai thuộc tính đầu tiên
