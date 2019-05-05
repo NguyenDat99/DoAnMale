@@ -21,7 +21,7 @@ from sklearn.model_selection import GridSearchCV
 x_train_CoLoc, x_test_CoLoc, y_train_CoLoc, y_test_CoLoc=train_test_split(dp.data_CoLoc(0,['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung','co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac','ngay_lien_lac','thoi_luong_lien_lac']),dp.data_CoLoc(1,None),test_size=0.2)
 x_train_KhongLoc, x_test_KhongLoc, y_train_KhongLoc, y_test_KhongLoc=train_test_split(dp.data_khongLoc(0,['tuoi','nghe_nghiep','hon_nhan','hoc_van','co_the_tin_dung','co_nha_o','vay_ca_nhan','kenh_lien_lac','thang_lien_lac','ngay_lien_lac','thoi_luong_lien_lac']),dp.data_khongLoc(1,None),test_size=0.2)
 #-------------------------------------------------------------------------------
-#tìm parameter tốt nhất có lọc
+#tìm parameter tốt nhất
 def ketQua():
     tuned_parameters = [{'kernel': ['rbf'], 'gamma': [0.001, 0.01,0.1,1],
                           'C': [0.01,0.1,1,10]}]
