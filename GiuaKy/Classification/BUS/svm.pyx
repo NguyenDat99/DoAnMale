@@ -66,13 +66,10 @@ def gridsvc():
     grid = GridSearchCV(SVC(), clf, n_jobs=-1, cv = 5)
     grid.fit(x_train_CoLoc, y_train_CoLoc)
     print("The best parameters are %s with a score of %0.2f"% (grid.best_params_, grid.best_score_))
-    
+
 def gridsvc1():
     clf = [{'kernel': ['linear'], 'C': [0.001, 0.01, 0.1, 1]}]
     grid = GridSearchCV(SVC(), clf, n_jobs=-1, cv = 5)
     grid.fit(x_train_CoLoc, y_train_CoLoc)
     print("The best parameters are %s with a score of %0.2f"% (grid.best_params_, grid.best_score_))
     
-
-print("\t\t\t 3 -> chương trình chạy xong lúc %s" %datetime.datetime.now())
-
