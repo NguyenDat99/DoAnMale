@@ -1,23 +1,23 @@
 import sys
 sys.path.append('../DAO/')
+# thoi gian
 import datetime
+# tap du lieu su dung
 import dataProcessing as dp
+# thu vien ve
 import matplotlib.pyplot as plt
-import numpy as np
-from scipy.integrate._ivp.radau import C
-from sklearn.preprocessing import StandardScaler
+from mpl_toolkits.mplot3d import Axes3D
+# danh gia do chinh xac
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
-from matplotlib.colors import  ListedColormap
-from sklearn.metrics import confusion_matrix
-from sklearn import metrics
-from sklearn import preprocessing
+# xu ly matrix
+import numpy as np
+# svm
 from sklearn import svm
 from sklearn.svm import SVC
 from sklearn.svm import LinearSVC
-#Đánh giá
-from sklearn.metrics import recall_score
-from sklearn.metrics import precision_score
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import learning_curve, GridSearchCV
@@ -60,11 +60,19 @@ def linearkloc():
     print('\nClassification report\n')
     print(classification_report(y_test_KhongLoc, y_pred))
 
-''' test gridsearch '''
+'''--------------------------------------------------------test gridsearch '''
 def gridsvc():
-    #clf = [{'kernel': ['linear'], 'C': [0.001, 0.01, 0.1, 1]}]
-    #clf = [{'C': [0.001, 0.01, 0.1, 1]}]
-    clf = [{'kernel':['linear'], 'C':[1,0.25,0.5,0.75],'gamma': [1,2,3,'auto']}]
+    clf = [{'C': [0.001, 0.01, 0.1, 1]}]
     grid = GridSearchCV(SVC(), clf, n_jobs=-1, cv = 5)
-    grid.fit(x_train_KhongLoc, y_train_KhongLoc)
+    grid.fit(x_train_CoLoc, y_train_CoLoc)
     print("The best parameters are %s with a score of %0.2f"% (grid.best_params_, grid.best_score_))
+    
+def gridsvc1():
+    clf = [{'kernel': ['linear'], 'C': [0.001, 0.01, 0.1, 1]}]
+    grid = GridSearchCV(SVC(), clf, n_jobs=-1, cv = 5)
+    grid.fit(x_train_CoLoc, y_train_CoLoc)
+    print("The best parameters are %s with a score of %0.2f"% (grid.best_params_, grid.best_score_))
+    
+
+print("\t\t\t 3 -> chương trình chạy xong lúc %s" %datetime.datetime.now())
+
