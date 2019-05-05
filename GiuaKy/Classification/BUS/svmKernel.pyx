@@ -28,7 +28,10 @@ def ketQua():
     grid = GridSearchCV(SVC(), tuned_parameters, cv=5)
     grid.fit(x_train_CoLoc, y_train_CoLoc)
     print("parameter tốt nhất có lọc %s with a score of %0.2f"% (grid.best_params_, grid.best_score_))
-
+    clf = SVC(kernel='rbf',gamma=0.01,C=10) # rbf Kernel
+    clf.fit(x_train_CoLoc, y_train_CoLoc)
+    y_pred = clf.predict(x_test_CoLoc)
+    print("Accuracy:",metrics.accuracy_score(y_test_CoLoc, y_pred))
     #tìm parameter tốt nhất khong lọc
     grid1 = GridSearchCV(SVC(), tuned_parameters, cv=5)
     grid1.fit(x_train_KhongLoc, y_train_KhongLoc)
