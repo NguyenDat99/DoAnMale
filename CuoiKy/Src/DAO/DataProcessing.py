@@ -84,7 +84,7 @@ def data(k):
                 Embarked_=2
             elif tmp.Embarked_[i]=='Southampton':
                 Embarked_=3
-            dt.append([Sex,AgeRange,Class_,tmp.SiblingSpouse[i],tmp.ParentChild[i],Embarked_,tmp.Survived[i]])
+            dt.append([Sex,AgeRange,Class_,tmp.SiblingSpouse[i],tmp.ParentChild[i],Embarked_])
     elif k==2:# dataset_for_MultiLinear_regression
         for i in range(len(tmp.Age)):
             dt.append([tmp.Age[i],tmp.Weight[i],tmp.Height[i],
@@ -92,12 +92,7 @@ def data(k):
             tmp.Thigh[i],tmp.Knee[i],tmp.Ankle[i],tmp.Biceps[i],
             tmp.Forearm[i],tmp.Wrist[i],tmp.FAT_PER[i]])
     elif k==3:# dataset_for_PCA_LDA
-        TEST_RESULT=0
-        for i in range(len(tmp.LOC_BLANK)):
-            if tmp.TEST_RESULT[i]=='FAIL':
-                TEST_RESULT=0
-            elif tmp.TEST_RESULT[i]=='PASS':
-                TEST_RESULT=1
+        for i in range(len(tmp.TEST_RESULT)):
             dt.append([
             tmp.LOC_BLANK[i],	tmp.BRANCH_COUNT[i],tmp.CALL_PAIRS[i],tmp.LOC_CODE_AND_COMMENT[i],
             tmp.LOC_COMMENTS[i],tmp.CONDITION_COUNT[i],tmp.CYCLOMATIC_COMPLEXITY[i],
@@ -111,9 +106,29 @@ def data(k):
             tmp.MODIFIED_CONDITION_COUNT[i],tmp.MULTIPLE_CONDITION_COUNT[i],tmp.FAILDE_COUNT[i],
             tmp.FAILRMALIZED_CYLOMATIC_COMPLEXITY[i],tmp.NUM_OPERANDS[i],tmp.NUM_OPERATORS[i],
             tmp.NUM_UNIQUE_OPERANDS[i],tmp.NUM_UNIQUE_OPERATORS[i],tmp.NUMBER_OF_LINES[i],
-            tmp.PERCENT_COMMENTS[i],tmp.LOC_TOTAL[i],TEST_RESULT
+            tmp.PERCENT_COMMENTS[i],tmp.LOC_TOTAL[i]
             ])
     elif k==4:# dataset_for_Poly_regression
         for i in range(len(tmp.Rating)):
             dt.append([tmp.Rating[i],tmp.Reviews[i],chuyenDoiDuLieu(tmp.Size[i]),locKyTu(tmp.Installs[i])])
+    return dt
+
+
+def label_(k):
+    tmp=da.dataset(k)
+    dt=[]
+    if k==1:
+        for i in range(len(tmp.Sex)):
+            dt.append(tmp.Survived[i])
+    elif k==2:
+        for i in range(len(tmp.Age)):
+            dt.append(tmp.Age[i])
+    elif k==3:
+        TEST_RESULT=0
+        for i in range(len(tmp.TEST_RESULT)):
+            if tmp.TEST_RESULT[i]=='FAIL':
+                TEST_RESULT=0
+            elif tmp.TEST_RESULT[i]=='PASS':
+                TEST_RESULT=1
+            dt.append(TEST_RESULT)
     return dt
