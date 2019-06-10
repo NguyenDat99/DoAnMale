@@ -90,7 +90,7 @@ def data(k):
             dt.append([tmp.Age[i],tmp.Weight[i],tmp.Height[i],
             tmp.Neck[i],tmp.Chest[i],tmp.Abdomen[i],tmp.Hip[i],
             tmp.Thigh[i],tmp.Knee[i],tmp.Ankle[i],tmp.Biceps[i],
-            tmp.Forearm[i],tmp.Wrist[i],tmp.FAT_PER[i]])
+            tmp.Forearm[i],tmp.Wrist[i]])
     elif k==3:# dataset_for_PCA_LDA
         for i in range(len(tmp.TEST_RESULT)):
             dt.append([
@@ -122,7 +122,7 @@ def label_(k):
             dt.append(tmp.Survived[i])
     elif k==2:
         for i in range(len(tmp.Age)):
-            dt.append(tmp.Age[i])
+            dt.append(tmp.FAT_PER[i])
     elif k==3:
         TEST_RESULT=0
         for i in range(len(tmp.TEST_RESULT)):
