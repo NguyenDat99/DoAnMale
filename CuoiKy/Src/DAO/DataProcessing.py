@@ -11,7 +11,6 @@
 import sys
 sys.path.append('../DTO/')
 import DataAdapter as da
-from numba import jit
 
 
 def locKyTu(k):
