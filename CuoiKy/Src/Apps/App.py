@@ -24,8 +24,8 @@ class Application(tk.Frame):
 
     def create_widgets(self):
         # Load an image using OpenCV
-        cv_img = cv2.imread("img/d.png")
-        cv_img = cv2.blur(cv_img, (45,45 ))
+        cv_img = cv2.imread("img/b.png")
+        cv_img = cv2.blur(cv_img, (10,10))
         self.canvas = tk.Canvas(self.master, width = 800, height = 600)
         self.canvas.pack()
         self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(cv_img))
@@ -53,13 +53,23 @@ class Application(tk.Frame):
         self.ve3d_bt.pack()
         self.ve3d_bt.place(x=452, y=420, width=90, height=50)
 ##########################################################################################
-        self.MR_label = tk.Label(text="MR",bg="#FEB857")
+        # self.MR_label = tk.Label(text="MR",bg="#FEB857")
+        # self.MR_label.pack()
+        # self.MR_label.place(x=260, y=5, width=280, height=60)
+        # self.MR_label.config(font=("Courier bold", 40))
+        # self.dactrungtinh_label = tk.Label(text="Chọn đặc trưng tính toán",bg="#FEB857")
+        # self.dactrungtinh_label.pack()
+        # self.dactrungtinh_label.place(x=30, y=10, width=280, height=30)
+        # #####
+        self.MR_label = tk.Label(text="MR",bg="#A19A99",fg="#f2f2f2")
         self.MR_label.pack()
         self.MR_label.place(x=260, y=5, width=280, height=60)
         self.MR_label.config(font=("Courier bold", 40))
-        self.dactrungtinh_label = tk.Label(text="Chọn đặc trưng tính toán",bg="#FEB857")
+        self.dactrungtinh_label = tk.Label(text="Chọn đặc trưng tính toán",bg="#A19A99",fg="#f2f2f2")
+        self.dactrungtinh_label.config(font=("Courier bold", 15))
         self.dactrungtinh_label.pack()
         self.dactrungtinh_label.place(x=30, y=10, width=280, height=30)
+
         ##############################
         self.Age_bt = tk.Button(bg="#C9DCEA")
         self.Age_bt['text'] = 'Age'
@@ -145,8 +155,9 @@ class Application(tk.Frame):
         self.All_bt.pack()
         self.All_bt.place(x=100, y=140, width=70, height=30)
 ##########################################################################################
-        self.dactrungtinh2_label = tk.Label(text="Chọn đặc trưng vẽ",bg="#FEB857")
+        self.dactrungtinh2_label = tk.Label(text="Chọn đặc trưng vẽ",bg="#A19A99",fg="#f2f2f2")
         self.dactrungtinh2_label.pack()
+        self.dactrungtinh2_label.config(font=("Courier bold", 15))
         self.dactrungtinh2_label.place(x=480, y=10, width=280, height=30)
         self.Age2_bt = tk.Button(bg="#C9DCEA")
         self.Age2_bt['text'] = 'Age'
@@ -479,4 +490,5 @@ class Application(tk.Frame):
 app = Application(master=tk.Tk())
 app.master.title('Ứng Dụng MALE(Nhóm 1)')
 app.master.minsize(800, 600)
+app.master.maxsize(800, 600)
 app.mainloop()
