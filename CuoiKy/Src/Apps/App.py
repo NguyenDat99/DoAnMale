@@ -31,12 +31,12 @@ class Application(tk.Frame):
         self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(cv_img))
         self.canvas.create_image(0, 0, image=self.photo, anchor=tk.NW)
 #######################################################################################
-        self.label_loginForm = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Login Form")
-        self.label_username = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Username")
-        self.label_password = tk.Label(bg="#A19A99",fg="#f2f2f2",text="Password")
+        self.label_loginForm = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Đăng Nhập")
+        self.label_username = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Tài khoản")
+        self.label_password = tk.Label(bg="#A19A99",fg="#f2f2f2",text="Mật khẩu")
         self.entry_username = Entry(self.master)
         self.entry_password = Entry(self.master, show="*")
-        self.logbtn = Button(self.master, text="Login")
+        self.logbtn = Button(self.master, text="Đăng Nhập")
         self.label_loginForm.config(font=("Courier bold", 40))
         self.label_username.config(font=("Courier bold", 20))
         self.label_password.config(font=("Courier bold", 20))
@@ -353,6 +353,8 @@ class Application(tk.Frame):
             self.Biceps2_bt.place(x=620, y=110, width=70, height=30)
             self.Forearm2_bt.place(x=690, y=110, width=70, height=30)
             self.Wrist2_bt.place(x=480, y=140, width=70, height=30)
+        else:
+            messagebox.showerror('Lỗi','Sai tài khoản hoặc mật khẩu!')
         if 1 not in isLogin:
             self.label_loginForm.place(x=250,y=10)
             self.label_username.place(x=40,y=250)
