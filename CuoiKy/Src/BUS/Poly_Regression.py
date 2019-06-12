@@ -27,9 +27,6 @@ from mpl_toolkits.mplot3d import Axes3D
 data=dp.data(4)
 label_=dp.label_(4)
 
-
-
-
 def MR(x_train,y_train,x_test,y_test):
     poly = PolynomialFeatures(2)
     x_poly=poly.fit_transform(x_train)
