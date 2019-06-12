@@ -10,10 +10,10 @@ import sys
 sys.path.append('../BUS/')
 import Multivariable_Regression as MR
 
-
-tinhToan=[]
-isAll=[]
-ve=[]
+isLogin=[]
+tinhToan=[]#bien tam cho tinh toan
+isAll=[]#bien tam cho nut all
+ve=[]#bien tam cho ve
 
 
 class Application(tk.Frame):
@@ -31,218 +31,416 @@ class Application(tk.Frame):
         self.photo = PIL.ImageTk.PhotoImage(image = PIL.Image.fromarray(cv_img))
         self.canvas.create_image(0, 0, image=self.photo, anchor=tk.NW)
 #######################################################################################
+        self.label_loginForm = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Login Form")
+        self.label_username = tk.Label(bg="#A19A99",fg="#f2f2f2", text="Username")
+        self.label_password = tk.Label(bg="#A19A99",fg="#f2f2f2",text="Password")
+        self.entry_username = Entry(self.master)
+        self.entry_password = Entry(self.master, show="*")
+        self.logbtn = Button(self.master, text="Login")
+        self.label_loginForm.config(font=("Courier bold", 40))
+        self.label_username.config(font=("Courier bold", 20))
+        self.label_password.config(font=("Courier bold", 20))
+        self.entry_username.config(font=("Courier bold", 20))
+        self.entry_password.config(font=("Courier bold", 20))
+        self.logbtn.config(font=("Courier bold", 20))
+        self.label_loginForm.pack()
+        self.label_username.pack()
+        self.label_password.pack()
+        self.entry_username.pack()
+        self.entry_password.pack()
+        self.logbtn.pack()
+        self.label_loginForm.place(x=250,y=10)
+        self.label_username.place(x=40,y=250)
+        self.label_password.place(x=40,y=300)
+        self.entry_username.place(x=180,y=250)
+        self.entry_password.place(x=180,y=300)
+        self.logbtn.place(x=220,y=350, width=250, height=50)
+        #
+        self.logbtn['command']=self.logbtn_Click
+
+#######################################################################################
         self.ketQua_bt = tk.Button(bg="#ffffff")
         self.ketQua_bt.pack()
-        self.ketQua_bt.place(x=250, y=300, width=300, height=100)
+        self.ketQua_bt.place(x=-2000+250, y=-2000+300, width=300, height=100)
         ###################################
         self.tinhToan_bt = tk.Button(bg="#C9DCEA")
         self.tinhToan_bt['text'] = 'Tính'
         self.tinhToan_bt['command']=self.tinhToan_bt_Click
         self.tinhToan_bt.pack()
-        self.tinhToan_bt.place(x=252, y=420, width=90, height=50)
+        self.tinhToan_bt.place(x=-2000+252, y=-2000+420, width=90, height=50)
         ###
         self.ve2d_bt = tk.Button(bg="#C9DCEA")
         self.ve2d_bt['text'] = 'Vẽ 2d'
         self.ve2d_bt['command']=self.ve2d_Click
         self.ve2d_bt.pack()
-        self.ve2d_bt.place(x=352, y=420, width=90, height=50)
+        self.ve2d_bt.place(x=-2000+352, y=-2000+420, width=90, height=50)
         ###
         self.ve3d_bt = tk.Button(bg="#C9DCEA")
         self.ve3d_bt['text'] = 'Vẽ 3d'
         self.ve3d_bt['command']=self.ve3d_Click
         self.ve3d_bt.pack()
-        self.ve3d_bt.place(x=452, y=420, width=90, height=50)
+        self.ve3d_bt.place(x=-2000+452, y=-2000+420, width=90, height=50)
+        self.Back_bt=tk.Button(bg="#ff5c33",fg="#ffebe6")
+        self.Back_bt['text']='<--'
+        self.Back_bt.pack()
+        self.Back_bt.place(x=-2000+0,y=-2000+560,width=60, height=40)
 ##########################################################################################
         # self.MR_label = tk.Label(text="MR",bg="#FEB857")
         # self.MR_label.pack()
-        # self.MR_label.place(x=260, y=5, width=280, height=60)
+        # self.MR_label.place(x=-2000+260, y=-2000+5, width=280, height=60)
         # self.MR_label.config(font=("Courier bold", 40))
         # self.dactrungtinh_label = tk.Label(text="Chọn đặc trưng tính toán",bg="#FEB857")
         # self.dactrungtinh_label.pack()
-        # self.dactrungtinh_label.place(x=30, y=10, width=280, height=30)
+        # self.dactrungtinh_label.place(x=-2000+30, y=-2000+10, width=280, height=30)
         # #####
         self.MR_label = tk.Label(text="MR",bg="#A19A99",fg="#f2f2f2")
         self.MR_label.pack()
-        self.MR_label.place(x=260, y=5, width=280, height=60)
+        self.MR_label.place(x=-2000+260, y=-2000+5, width=280, height=60)
         self.MR_label.config(font=("Courier bold", 40))
         self.dactrungtinh_label = tk.Label(text="Chọn đặc trưng tính toán",bg="#A19A99",fg="#f2f2f2")
         self.dactrungtinh_label.config(font=("Courier bold", 15))
         self.dactrungtinh_label.pack()
-        self.dactrungtinh_label.place(x=30, y=10, width=280, height=30)
+        self.dactrungtinh_label.place(x=-2000+30, y=-2000+10, width=280, height=30)
 
         ##############################
         self.Age_bt = tk.Button(bg="#C9DCEA")
         self.Age_bt['text'] = 'Age'
         self.Age_bt['command']=self.Age_Click
         self.Age_bt.pack()
-        self.Age_bt.place(x=30, y=50, width=70, height=30)
+        self.Age_bt.place(x=-2000+30, y=-2000+50, width=70, height=30)
         ###
         self.Weight_bt = tk.Button(bg="#C9DCEA")
         self.Weight_bt['text'] = 'Weight'
         self.Weight_bt['command']=self.Weight_Click
         self.Weight_bt.pack()
-        self.Weight_bt.place(x=100, y=50, width=70, height=30)
+        self.Weight_bt.place(x=-2000+100, y=-2000+50, width=70, height=30)
         ###
         self.Height_bt = tk.Button(bg="#C9DCEA")
         self.Height_bt['text'] = 'Height'
         self.Height_bt['command']=self.Height_Click
         self.Height_bt.pack()
-        self.Height_bt.place(x=170, y=50, width=70, height=30)
+        self.Height_bt.place(x=-2000+170, y=-2000+50, width=70, height=30)
         ###
         self.Neck_bt = tk.Button(bg="#C9DCEA")
         self.Neck_bt['text'] = 'Neck'
         self.Neck_bt['command']=self.Neck_Click
         self.Neck_bt.pack()
-        self.Neck_bt.place(x=240, y=50, width=70, height=30)
+        self.Neck_bt.place(x=-2000+240, y=-2000+50, width=70, height=30)
         ####
         self.Chest_bt = tk.Button(bg="#C9DCEA")
         self.Chest_bt['text'] = 'Chest'
         self.Chest_bt['command']=self.Chest_Click
         self.Chest_bt.pack()
-        self.Chest_bt.place(x=30, y=80, width=70, height=30)
+        self.Chest_bt.place(x=-2000+30, y=-2000+80, width=70, height=30)
         ####
         self.Abdomen_bt = tk.Button(bg="#C9DCEA")
         self.Abdomen_bt['text'] = 'Abdomen'
         self.Abdomen_bt['command']=self.Abdomen_Click
         self.Abdomen_bt.pack()
-        self.Abdomen_bt.place(x=100, y=80, width=70, height=30)
+        self.Abdomen_bt.place(x=-2000+100, y=-2000+80, width=70, height=30)
         ####
         self.Hip_bt = tk.Button(bg="#C9DCEA")
         self.Hip_bt['text'] = 'Hip'
         self.Hip_bt['command']=self.Hip_Click
         self.Hip_bt.pack()
-        self.Hip_bt.place(x=170, y=80, width=70, height=30)
+        self.Hip_bt.place(x=-2000+170, y=-2000+80, width=70, height=30)
         ####
         self.Thigh_bt = tk.Button(bg="#C9DCEA")
         self.Thigh_bt['text'] = 'Thigh'
         self.Thigh_bt['command']=self.Thigh_Click
         self.Thigh_bt.pack()
-        self.Thigh_bt.place(x=240, y=80, width=70, height=30)
+        self.Thigh_bt.place(x=-2000+240, y=-2000+80, width=70, height=30)
         ####
         self.Knee_bt = tk.Button(bg="#C9DCEA")
         self.Knee_bt['text'] = 'Knee'
         self.Knee_bt['command']=self.Knee_Click
         self.Knee_bt.pack()
-        self.Knee_bt.place(x=30, y=110, width=70, height=30)
+        self.Knee_bt.place(x=-2000+30, y=-2000+110, width=70, height=30)
         ####
         self.Ankle_bt = tk.Button(bg="#C9DCEA")
         self.Ankle_bt['text'] = 'Ankle'
         self.Ankle_bt['command']=self.Ankle_Click
         self.Ankle_bt.pack()
-        self.Ankle_bt.place(x=100, y=110, width=70, height=30)
+        self.Ankle_bt.place(x=-2000+100, y=-2000+110, width=70, height=30)
         ####
         self.Biceps_bt = tk.Button(bg="#C9DCEA")
         self.Biceps_bt['text'] = 'Biceps'
         self.Biceps_bt['command']=self.Biceps_Click
         self.Biceps_bt.pack()
-        self.Biceps_bt.place(x=170, y=110, width=70, height=30)
+        self.Biceps_bt.place(x=-2000+170, y=-2000+110, width=70, height=30)
         ####
         self.Forearm_bt = tk.Button(bg="#C9DCEA")
         self.Forearm_bt['text'] = 'Forearm'
         self.Forearm_bt['command']=self.Forearm_Click
         self.Forearm_bt.pack()
-        self.Forearm_bt.place(x=240, y=110, width=70, height=30)
+        self.Forearm_bt.place(x=-2000+240, y=-2000+110, width=70, height=30)
         ####
         self.Wrist_bt = tk.Button(bg="#C9DCEA")
         self.Wrist_bt['text'] = 'Wrist'
         self.Wrist_bt['command']=self.Wrist_Click
         self.Wrist_bt.pack()
-        self.Wrist_bt.place(x=30, y=140, width=70, height=30)
+        self.Wrist_bt.place(x=-2000+30, y=-2000+140, width=70, height=30)
         ####
         self.All_bt = tk.Button(bg="#C9DCEA")
         self.All_bt['text'] = 'All'
         self.All_bt['command']=self.All_Click
         self.All_bt.pack()
-        self.All_bt.place(x=100, y=140, width=70, height=30)
+        self.All_bt.place(x=-2000+100, y=-2000+140, width=70, height=30)
 ##########################################################################################
         self.dactrungtinh2_label = tk.Label(text="Chọn đặc trưng vẽ",bg="#A19A99",fg="#f2f2f2")
         self.dactrungtinh2_label.pack()
         self.dactrungtinh2_label.config(font=("Courier bold", 15))
-        self.dactrungtinh2_label.place(x=480, y=10, width=280, height=30)
+        self.dactrungtinh2_label.place(x=-2000+480, y=-2000+10, width=280, height=30)
         self.Age2_bt = tk.Button(bg="#C9DCEA")
         self.Age2_bt['text'] = 'Age'
         self.Age2_bt['command']=self.Age2_Click
         self.Age2_bt.pack()
-        self.Age2_bt.place(x=480, y=50, width=70, height=30)
+        self.Age2_bt.place(x=-2000+480, y=-2000+50, width=70, height=30)
         ###
         self.Weight2_bt = tk.Button(bg="#C9DCEA")
         self.Weight2_bt['text'] = 'Weight'
         self.Weight2_bt['command']=self.Weight2_Click
         self.Weight2_bt.pack()
-        self.Weight2_bt.place(x=550, y=50, width=70, height=30)
+        self.Weight2_bt.place(x=-2000+550, y=-2000+50, width=70, height=30)
         ###
         self.Height2_bt = tk.Button(bg="#C9DCEA")
         self.Height2_bt['text'] = 'Height'
         self.Height2_bt['command']=self.Height2_Click
         self.Height2_bt.pack()
-        self.Height2_bt.place(x=620, y=50, width=70, height=30)
+        self.Height2_bt.place(x=-2000+620, y=-2000+50, width=70, height=30)
         ###
         self.Neck2_bt = tk.Button(bg="#C9DCEA")
         self.Neck2_bt['text'] = 'Neck'
         self.Neck2_bt['command']=self.Neck2_Click
         self.Neck2_bt.pack()
-        self.Neck2_bt.place(x=690, y=50, width=70, height=30)
+        self.Neck2_bt.place(x=-2000+690, y=-2000+50, width=70, height=30)
         ####
         self.Chest2_bt = tk.Button(bg="#C9DCEA")
         self.Chest2_bt['text'] = 'Chest'
         self.Chest2_bt['command']=self.Chest2_Click
         self.Chest2_bt.pack()
-        self.Chest2_bt.place(x=480, y=80, width=70, height=30)
+        self.Chest2_bt.place(x=-2000+480, y=-2000+80, width=70, height=30)
         ####
         self.Abdomen2_bt = tk.Button(bg="#C9DCEA")
         self.Abdomen2_bt['text'] = 'Abdomen'
         self.Abdomen2_bt['command']=self.Abdomen2_Click
         self.Abdomen2_bt.pack()
-        self.Abdomen2_bt.place(x=550, y=80, width=70, height=30)
+        self.Abdomen2_bt.place(x=-2000+550, y=-2000+80, width=70, height=30)
         ####
         self.Hip2_bt = tk.Button(bg="#C9DCEA")
         self.Hip2_bt['text'] = 'Hip'
         self.Hip2_bt['command']=self.Hip2_Click
         self.Hip2_bt.pack()
-        self.Hip2_bt.place(x=620, y=80, width=70, height=30)
+        self.Hip2_bt.place(x=-2000+620, y=-2000+80, width=70, height=30)
         ####
         self.Thigh2_bt = tk.Button(bg="#C9DCEA")
         self.Thigh2_bt['text'] = 'Thigh'
         self.Thigh2_bt['command']=self.Thigh2_Click
         self.Thigh2_bt.pack()
-        self.Thigh2_bt.place(x=690, y=80, width=70, height=30)
+        self.Thigh2_bt.place(x=-2000+690, y=-2000+80, width=70, height=30)
         ####
         self.Knee2_bt = tk.Button(bg="#C9DCEA")
         self.Knee2_bt['text'] = 'Knee'
         self.Knee2_bt['command']=self.Knee2_Click
         self.Knee2_bt.pack()
-        self.Knee2_bt.place(x=480, y=110, width=70, height=30)
+        self.Knee2_bt.place(x=-2000+480, y=-2000+110, width=70, height=30)
         ####
         self.Ankle2_bt = tk.Button(bg="#C9DCEA")
         self.Ankle2_bt['text'] = 'Ankle'
         self.Ankle2_bt['command']=self.Ankle2_Click
         self.Ankle2_bt.pack()
-        self.Ankle2_bt.place(x=550, y=110, width=70, height=30)
+        self.Ankle2_bt.place(x=-2000+550, y=-2000+110, width=70, height=30)
         ####
         self.Biceps2_bt = tk.Button(bg="#C9DCEA")
         self.Biceps2_bt['text'] = 'Biceps'
         self.Biceps2_bt['command']=self.Biceps2_Click
         self.Biceps2_bt.pack()
-        self.Biceps2_bt.place(x=620, y=110, width=70, height=30)
+        self.Biceps2_bt.place(x=-2000+620, y=-2000+110, width=70, height=30)
         ####
         self.Forearm2_bt = tk.Button(bg="#C9DCEA")
         self.Forearm2_bt['text'] = 'Forearm'
         self.Forearm2_bt['command']=self.Forearm2_Click
         self.Forearm2_bt.pack()
-        self.Forearm2_bt.place(x=690, y=110, width=70, height=30)
+        self.Forearm2_bt.place(x=-2000+690, y=-2000+110, width=70, height=30)
         ####
         self.Wrist2_bt = tk.Button(bg="#C9DCEA")
         self.Wrist2_bt['text'] = 'Wrist'
         self.Wrist2_bt['command']=self.Wrist2_Click
         self.Wrist2_bt.pack()
-        self.Wrist2_bt.place(x=480, y=140, width=70, height=30)
+        self.Wrist2_bt.place(x=-2000+480, y=-2000+140, width=70, height=30)
         ###
+        self.Back_bt['command']=self.back_Click
     # def on_select(self,event=None):
     #     if event: # <-- this works only with bind because `command=` doesn't send event
     #         print("event.widget:", event.widget.get())
     #     for i, x in enumerate(self.all_comboboxes):
     #         print("all_comboboxes[%d]: %s" % (i, x.get()))
-    #     self.label.place(x=10, y=10, width=70, height=30)
+    #     self.label.place(x=-2000+10, y=-2000+10, width=70, height=30)
+    def logbtn_Click(self,event=None):
+        if self.entry_username.get()=='Nhom1' and self.entry_password.get()=='123456':
+            isLogin.append(1)
+            isAll.clear()
+            ve.clear()
+            tinhToan.clear()
+            self.Age_bt.config(bg="#C9DCEA")
+            self.Weight_bt.config(bg="#C9DCEA")
+            self.Height_bt.config(bg="#C9DCEA")
+            self.Neck_bt.config(bg="#C9DCEA")
+            self.Chest_bt.config(bg="#C9DCEA")
+            self.Abdomen_bt.config(bg="#C9DCEA")
+            self.Hip_bt.config(bg="#C9DCEA")
+            self.Thigh_bt.config(bg="#C9DCEA")
+            self.Knee_bt.config(bg="#C9DCEA")
+            self.Ankle_bt.config(bg="#C9DCEA")
+            self.Biceps_bt.config(bg="#C9DCEA")
+            self.Forearm_bt.config(bg="#C9DCEA")
+            self.Wrist_bt.config(bg="#C9DCEA")
+            self.Age2_bt.config(bg="#C9DCEA")
+            self.Weight2_bt.config(bg="#C9DCEA")
+            self.Height2_bt.config(bg="#C9DCEA")
+            self.Neck2_bt.config(bg="#C9DCEA")
+            self.Chest2_bt.config(bg="#C9DCEA")
+            self.Abdomen2_bt.config(bg="#C9DCEA")
+            self.Hip2_bt.config(bg="#C9DCEA")
+            self.Thigh2_bt.config(bg="#C9DCEA")
+            self.Knee2_bt.config(bg="#C9DCEA")
+            self.Ankle2_bt.config(bg="#C9DCEA")
+            self.Biceps2_bt.config(bg="#C9DCEA")
+            self.Forearm2_bt.config(bg="#C9DCEA")
+            self.Wrist2_bt.config(bg="#C9DCEA")
+            self.All_bt.config(bg="#C9DCEA")
+            self.ketQua_bt.config(text="")
+            ###################################################################
+            self.label_loginForm.place(x=-2000+250,y=-2000+10)
+            self.label_username.place(x=-2000+40,y=-2000+250)
+            self.label_password.place(x=-2000+40,y=-2000+300)
+            self.entry_username.place(x=-2000+180,y=-2000+250)
+            self.entry_password.place(x=-2000+180,y=-2000+300)
+            self.logbtn.place(x=-2000+220,y=-2000+350, width=250, height=50)
+            self.Back_bt.place(x=0,y=560,width=60, height=40)
+            #######################################################################################
+            self.ketQua_bt.place(x=250, y=300, width=300, height=100)
+            self.tinhToan_bt.place(x=252, y=420, width=90, height=50)
+            self.ve2d_bt.place(x=352, y=420, width=90, height=50)
+            self.ve3d_bt.place(x=452, y=420, width=90, height=50)
+            self.MR_label.place(x=260, y=5, width=280, height=60)
+            self.dactrungtinh_label.place(x=30, y=10, width=280, height=30)
+            self.Age_bt.place(x=30, y=50, width=70, height=30)
+            self.Weight_bt.place(x=100, y=50, width=70, height=30)
+            self.Height_bt.place(x=170, y=50, width=70, height=30)
+            self.Neck_bt.place(x=240, y=50, width=70, height=30)
+            self.Chest_bt.place(x=30, y=80, width=70, height=30)
+            self.Abdomen_bt.place(x=100, y=80, width=70, height=30)
+            self.Hip_bt.place(x=170, y=80, width=70, height=30)
+            self.Thigh_bt.place(x=240, y=80, width=70, height=30)
+            self.Knee_bt.place(x=30, y=110, width=70, height=30)
+            self.Ankle_bt.place(x=100, y=110, width=70, height=30)
+            self.Biceps_bt.place(x=170, y=110, width=70, height=30)
+            self.Forearm_bt.place(x=240, y=110, width=70, height=30)
+            self.Wrist_bt.place(x=30, y=140, width=70, height=30)
+            self.All_bt.place(x=100, y=140, width=70, height=30)
+            self.dactrungtinh2_label.place(x=480, y=10, width=280, height=30)
+            self.Age2_bt.place(x=480, y=50, width=70, height=30)
+            self.Weight2_bt.place(x=550, y=50, width=70, height=30)
+            self.Height2_bt.place(x=620, y=50, width=70, height=30)
+            self.Neck2_bt.place(x=690, y=50, width=70, height=30)
+            self.Chest2_bt.place(x=480, y=80, width=70, height=30)
+            self.Abdomen2_bt.place(x=550, y=80, width=70, height=30)
+            self.Hip2_bt.place(x=620, y=80, width=70, height=30)
+            self.Thigh2_bt.place(x=690, y=80, width=70, height=30)
+            self.Knee2_bt.place(x=480, y=110, width=70, height=30)
+            self.Ankle2_bt.place(x=550, y=110, width=70, height=30)
+            self.Biceps2_bt.place(x=620, y=110, width=70, height=30)
+            self.Forearm2_bt.place(x=690, y=110, width=70, height=30)
+            self.Wrist2_bt.place(x=480, y=140, width=70, height=30)
+        if 1 not in isLogin:
+            self.label_loginForm.place(x=250,y=10)
+            self.label_username.place(x=40,y=250)
+            self.label_password.place(x=40,y=300)
+            self.entry_username.place(x=180,y=250)
+            self.entry_password.place(x=180,y=300)
+            self.logbtn.place(x=220,y=350, width=250, height=50)
+            self.Back_bt.place(x=-2000+0,y=-2000+560,width=60, height=40)
+            ###############################################################################
+            self.ketQua_bt.place(x=-2000+250, y=-2000+300, width=300, height=100)
+            self.tinhToan_bt.place(x=-2000+252, y=-2000+420, width=90, height=50)
+            self.ve2d_bt.place(x=-2000+352, y=-2000+420, width=90, height=50)
+            self.ve3d_bt.place(x=-2000+452, y=-2000+420, width=90, height=50)
+            self.MR_label.place(x=-2000+260, y=-2000+5, width=280, height=60)
+            self.dactrungtinh_label.place(x=-2000+30, y=-2000+10, width=280, height=30)
+            self.Age_bt.place(x=-2000+30, y=-2000+50, width=70, height=30)
+            self.Weight_bt.place(x=-2000+100, y=-2000+50, width=70, height=30)
+            self.Height_bt.place(x=-2000+170, y=-2000+50, width=70, height=30)
+            self.Neck_bt.place(x=-2000+240, y=-2000+50, width=70, height=30)
+            self.Chest_bt.place(x=-2000+30, y=-2000+80, width=70, height=30)
+            self.Abdomen_bt.place(x=-2000+100, y=-2000+80, width=70, height=30)
+            self.Hip_bt.place(x=-2000+170, y=-2000+80, width=70, height=30)
+            self.Thigh_bt.place(x=-2000+240, y=-2000+80, width=70, height=30)
+            self.Knee_bt.place(x=-2000+30, y=-2000+110, width=70, height=30)
+            self.Ankle_bt.place(x=-2000+100, y=-2000+110, width=70, height=30)
+            self.Biceps_bt.place(x=-2000+170, y=-2000+110, width=70, height=30)
+            self.Forearm_bt.place(x=-2000+240, y=-2000+110, width=70, height=30)
+            self.Wrist_bt.place(x=-2000+30, y=-2000+140, width=70, height=30)
+            self.All_bt.place(x=-2000+100, y=-2000+140, width=70, height=30)
+            self.dactrungtinh2_label.place(x=-2000+480, y=-2000+10, width=280, height=30)
+            self.Age2_bt.place(x=-2000+480, y=-2000+50, width=70, height=30)
+            self.Weight2_bt.place(x=-2000+550, y=-2000+50, width=70, height=30)
+            self.Height2_bt.place(x=-2000+620, y=-2000+50, width=70, height=30)
+            self.Neck2_bt.place(x=-2000+690, y=-2000+50, width=70, height=30)
+            self.Chest2_bt.place(x=-2000+480, y=-2000+80, width=70, height=30)
+            self.Abdomen2_bt.place(x=-2000+550, y=-2000+80, width=70, height=30)
+            self.Hip2_bt.place(x=-2000+620, y=-2000+80, width=70, height=30)
+            self.Thigh2_bt.place(x=-2000+690, y=-2000+80, width=70, height=30)
+            self.Knee2_bt.place(x=-2000+480, y=-2000+110, width=70, height=30)
+            self.Ankle2_bt.place(x=-2000+550, y=-2000+110, width=70, height=30)
+            self.Biceps2_bt.place(x=-2000+620, y=-2000+110, width=70, height=30)
+            self.Forearm2_bt.place(x=-2000+690, y=-2000+110, width=70, height=30)
+            self.Wrist2_bt.place(x=-2000+480, y=-2000+140, width=70, height=30)
+    def back_Click(self,event=None):
+        isLogin.remove(1)
+        self.label_loginForm.place(x=250,y=10)
+        self.label_username.place(x=40,y=250)
+        self.label_password.place(x=40,y=300)
+        self.entry_username.place(x=180,y=250)
+        self.entry_password.place(x=180,y=300)
+        self.logbtn.place(x=220,y=350, width=250, height=50)
+        self.Back_bt.place(x=-2000+0,y=-2000+560,width=60, height=40)
+        ###############################################################################
+        self.ketQua_bt.place(x=-2000+250, y=-2000+300, width=300, height=100)
+        self.tinhToan_bt.place(x=-2000+252, y=-2000+420, width=90, height=50)
+        self.ve2d_bt.place(x=-2000+352, y=-2000+420, width=90, height=50)
+        self.ve3d_bt.place(x=-2000+452, y=-2000+420, width=90, height=50)
+        self.MR_label.place(x=-2000+260, y=-2000+5, width=280, height=60)
+        self.dactrungtinh_label.place(x=-2000+30, y=-2000+10, width=280, height=30)
+        self.Age_bt.place(x=-2000+30, y=-2000+50, width=70, height=30)
+        self.Weight_bt.place(x=-2000+100, y=-2000+50, width=70, height=30)
+        self.Height_bt.place(x=-2000+170, y=-2000+50, width=70, height=30)
+        self.Neck_bt.place(x=-2000+240, y=-2000+50, width=70, height=30)
+        self.Chest_bt.place(x=-2000+30, y=-2000+80, width=70, height=30)
+        self.Abdomen_bt.place(x=-2000+100, y=-2000+80, width=70, height=30)
+        self.Hip_bt.place(x=-2000+170, y=-2000+80, width=70, height=30)
+        self.Thigh_bt.place(x=-2000+240, y=-2000+80, width=70, height=30)
+        self.Knee_bt.place(x=-2000+30, y=-2000+110, width=70, height=30)
+        self.Ankle_bt.place(x=-2000+100, y=-2000+110, width=70, height=30)
+        self.Biceps_bt.place(x=-2000+170, y=-2000+110, width=70, height=30)
+        self.Forearm_bt.place(x=-2000+240, y=-2000+110, width=70, height=30)
+        self.Wrist_bt.place(x=-2000+30, y=-2000+140, width=70, height=30)
+        self.All_bt.place(x=-2000+100, y=-2000+140, width=70, height=30)
+        self.dactrungtinh2_label.place(x=-2000+480, y=-2000+10, width=280, height=30)
+        self.Age2_bt.place(x=-2000+480, y=-2000+50, width=70, height=30)
+        self.Weight2_bt.place(x=-2000+550, y=-2000+50, width=70, height=30)
+        self.Height2_bt.place(x=-2000+620, y=-2000+50, width=70, height=30)
+        self.Neck2_bt.place(x=-2000+690, y=-2000+50, width=70, height=30)
+        self.Chest2_bt.place(x=-2000+480, y=-2000+80, width=70, height=30)
+        self.Abdomen2_bt.place(x=-2000+550, y=-2000+80, width=70, height=30)
+        self.Hip2_bt.place(x=-2000+620, y=-2000+80, width=70, height=30)
+        self.Thigh2_bt.place(x=-2000+690, y=-2000+80, width=70, height=30)
+        self.Knee2_bt.place(x=-2000+480, y=-2000+110, width=70, height=30)
+        self.Ankle2_bt.place(x=-2000+550, y=-2000+110, width=70, height=30)
+        self.Biceps2_bt.place(x=-2000+620, y=-2000+110, width=70, height=30)
+        self.Forearm2_bt.place(x=-2000+690, y=-2000+110, width=70, height=30)
+        self.Wrist2_bt.place(x=-2000+480, y=-2000+140, width=70, height=30)
+
     def Age_Click(self,event=None):
         if 'Age' not in tinhToan:
             tinhToan.append('Age')
