@@ -383,6 +383,9 @@ class Application(tk.Frame):
             self.Poly_regression_bt.place(x=-2000+220,y=-2000+448)
     def back_Click(self,event=None):
         if 2 in isLogin:
+            isAll.clear()
+            tinhToan.clear()
+            ve.clear()
             isLogin.remove(2)
             self.Back_bt.place(x=0,y=560,width=60, height=40)
             self.MR_bt.place(x=220,y=47)
