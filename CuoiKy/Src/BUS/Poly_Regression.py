@@ -75,7 +75,7 @@ def ve2D(mangCacDacTrung,dacTrungVe):
     y_pred=[]
     for i in range(len((m1[:,1])[0])):
         y_pred.append((m1[:,1])[0][i])
-    plt.scatter(x_test[layviTriDacTrung(dacTrungVe)],y_test,s=10,c="#3366cc")
+    plt.scatter(x_test[layviTriDacTrung(dacTrungVe)],y_test,s=10,c='blue')
     plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='red', linewidth=3)
     plt.title('Polynomial Regression')
     plt.xlabel("%s(Xj)"%dacTrungVe)
