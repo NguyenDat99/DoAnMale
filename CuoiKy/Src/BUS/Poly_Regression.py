@@ -28,12 +28,13 @@ data=dp.data(4)
 label_=dp.label_(4)
 
 def MR(x_train,y_train,x_test,y_test):
-    poly = PolynomialFeatures(2)
-    x_poly=poly.fit_transform(x_train)
-    model=LinearRegression()
+    poly = PolynomialFeatures(degree=4)
+    x_poly = poly.fit_transform(x_train)
+    poly.fit(x_poly, y_train)
+    model = LinearRegression()
     model.fit(x_poly,y_train)
     y_pred = model.predict(x_test)
-    score=r2_score(y_test,y_pred)
+    score = r2_score(y_test,y_pred)
     k=[]
     k.append([score,y_pred])
     return np.array(k)
@@ -75,7 +76,8 @@ def ve2D(mangCacDacTrung,dacTrungVe):
     for i in range(len((m1[:,1])[0])):
         y_pred.append((m1[:,1])[0][i])
     plt.scatter(x_test[layviTriDacTrung(dacTrungVe)],y_test,s=10,c="#3366cc")
-    plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='#cc0099', linewidth=3)
+    plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='red', linewidth=3)
+    plt.title('Polynomial Regression')
     plt.xlabel("%s(Xj)"%dacTrungVe)
     plt.ylabel('Y')
     plt.show()
@@ -104,4 +106,4 @@ def tinhToan(mangCacDacTrung):
 
 #ve2D(['Age','Weight','Height'],['Weight'])
 #ve3D(['Age','Weight','Height'],['Age','Weight'])
-#print(tinhToan(['Age','Weight','Height']))
+print(tinhToan(['Rating','Reviews','Size']))
