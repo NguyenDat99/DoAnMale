@@ -17,13 +17,22 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
+from sklearn import datasets
+iris = datasets.load_iris()
 
-data=dp.data(3)
-label_=dp.label_(3)
-
-def Standardizing():
+def data(k):
+    if k==1:
+        return dp.data(3)
+    elif k==2:
+        return iris.data
+def label_(k):
+    if k==1:
+        return dp.label_(3)
+    elif k==2:
+        return iris.target
+def Standardizing(k):
     #chuan hoa du lieu
-    dt = StandardScaler().fit_transform(data)
+    dt = StandardScaler().fit_transform(data(k))
     return dt
 def Mean(dt):
     #tinh ki vong trung binh
@@ -35,23 +44,25 @@ def CovarianceMatrix(dt,mean_vec):
     cov_mat = (dt - mean_vec).T.dot((dt - mean_vec)) / (dt.shape[0]-1)
     return cov_mat
 
-def Eigen_Values():
-    dt=Standardizing()
+def Eigen_Values(k):
+    dt=Standardizing(k)
     mean_vec=Mean(dt)
     cov_mat=CovarianceMatrix(dt,mean_vec)
     eig_vals, eig_vecs = np.linalg.eig(cov_mat)
     return eig_vals
 
-def Eigen_Vectors():
-    dt=Standardizing()
+def Eigen_Vectors(k):
+    dt=Standardizing(k)
     mean_vec=Mean(dt)
     cov_mat=CovarianceMatrix(dt,mean_vec)
     eig_vals, eig_vecs = np.linalg.eig(cov_mat)
     return eig_vecs
 
-def Selecting_Pri_Components():
-    eig_vals=Eigen_Values()
-    eig_vecs=Eigen_Vectors()
+def Selecting_Pri_Components(k):
+    if k==2:
+        return None
+    eig_vals=Eigen_Values(k)
+    eig_vecs=Eigen_Vectors(k)
     eig = [(np.abs(eig_vals[i]), eig_vecs[:,i]) for i in range(len(eig_vals))]
     # xap xep eigenvalue, eigenvector tuples tu cao den thap
     eig.sort()
@@ -72,10 +83,10 @@ def Selecting_Pri_Components():
     plt.show()
 
 
-def new_Data(n):
-    dt=Standardizing()
-    eig_vals=Eigen_Values()
-    eig_vecs=Eigen_Vectors()
+def new_Data(n_pc,k):
+    dt=Standardizing(k)
+    eig_vals=Eigen_Values(k)
+    eig_vecs=Eigen_Vectors(k)
     eig = [(np.abs(eig_vals[i]), eig_vecs[:,i]) for i in range(len(eig_vals))]
     # xap xep eigenvalue, eigenvector tuples tu cao den thap
     eig.sort()
@@ -85,19 +96,22 @@ def new_Data(n):
     var = [(i / s)*100 for i in sorted(eig_vals, reverse=True)]
     csvar = np.cumsum(var)
     tmp=[]
-    for i in range(n):
+    for i in range(n_pc):
         tmp.append(eig[i][1])
     tmp=np.array(tmp)
     #Y=X*W
     Y = dt.dot(tmp.T)
     return Y
 
-def KNN(k):
+
+def KNN(n_pc,k):
     x_train, x_test, y_train, y_test=train_test_split(
-    data,label_,test_size=0.2)
-    dt=new_Data(k)
+    data(k),label_(k),test_size=0.2)
+    dt=new_Data(n_pc,k)
+    if k==2:
+        return None
     x_train_PCA, x_test_PCA, y_train_PCA, y_test_PCA=train_test_split(
-    dt,label_,test_size=0.2)
+    dt,label_(k),test_size=0.2)
     clf=KNeighborsClassifier(n_neighbors=13).fit(x_train,y_train)
     precision= precision_score(y_test,clf.predict(x_test))
     recall= recall_score(y_test,clf.predict(x_test))
@@ -108,20 +122,22 @@ def KNN(k):
     F1=(2*precision1*recall1)/(precision1+recall1)
     return [F,F1]
 
-def Draw_2d():
-    dt=new_Data(2)
+
+def Draw_2d(k):
+    dt=new_Data(2,k)
     dt=np.array(dt)
-    plt.scatter(dt[:,0],dt[:,1],c=label_)
+    plt.scatter(dt[:,0],dt[:,1],c=label_(k))
     plt.ylabel("Y")
     plt.xlabel("x")
     plt.title("Vẽ 2 ")
     plt.show()
-def Draw_3d():
-    dt=new_Data(3)
+
+def Draw_3d(k):
+    dt=new_Data(3,k)
     fig = plt.figure()
     dt=np.array(dt)
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(dt[:,0],dt[:,1],dt[:,2],c=label_,s=100)
+    ax.scatter(dt[:,0],dt[:,1],dt[:,2],c=label_(k),s=100)
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
