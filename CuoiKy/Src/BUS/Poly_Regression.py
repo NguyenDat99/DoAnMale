@@ -8,6 +8,7 @@ sys.path.append('../DAO/')
 # chia tap du lieu ban dau thanh 2 tap la training va testing
 from sklearn.model_selection import train_test_split
 import DataProcessing as dp
+import operator
 # thu vien thuan toan LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
@@ -22,19 +23,20 @@ import numpy as np
 # thu vien ve cua python
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.pipeline import make_pipeline
 from mpl_toolkits.mplot3d import Axes3D
 
 data=dp.data(4)
 label_=dp.label_(4)
 
 def MR(x_train,y_train,x_test,y_test):
-    poly = PolynomialFeatures(degree=4)
-    x_poly = poly.fit_transform(x_train)
-    poly.fit(x_poly, y_train)
-    model = LinearRegression()
-    model.fit(x_poly,y_train)
-    y_pred = model.predict(x_test)
-    score = r2_score(y_test,y_pred)
+    poly_reg = PolynomialFeatures(degree=2)
+    X_poly = poly_reg.fit_transform(x_train)
+    lin_reg_2 = LinearRegression()
+    lin_reg_2.fit(X_poly, y_train)
+    X_poly1 = poly_reg.fit_transform(x_test)
+    y_pred = lin_reg_2.predict(X_poly1)
+    score = r2_score(y_test, y_pred)
     k=[]
     k.append([score,y_pred])
     return np.array(k)
@@ -47,15 +49,11 @@ def vitriDacTrung(dacTrung):
         return 1
     elif dacTrung=='Size':
         return 2
-    elif dacTrung=='Installs':
-        return 3
-
 def tenDacTrung(viTri):
       switcher={
                 0:'Rating',
                 1:'Reviews',
-                2:'Size',
-                3:'Installs'
+                2:'Size'
                 }
       return switcher.get(viTri)
 
@@ -70,17 +68,18 @@ def layDacTrung(mangCacDacTrung):
 
 
 def ve2D(mangCacDacTrung,dacTrungVe):
-    x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
+    x_train,x_test,y_train,y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     m1=MR(x_train[layviTriDacTrung(dacTrungVe)],y_train,x_test[layviTriDacTrung(dacTrungVe)],y_test)
     y_pred=[]
     for i in range(len((m1[:,1])[0])):
         y_pred.append((m1[:,1])[0][i])
     plt.scatter(x_test[layviTriDacTrung(dacTrungVe)],y_test,s=10,c='blue')
-    plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='red', linewidth=3)
+    plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='red')
     plt.title('Polynomial Regression')
     plt.xlabel("%s(Xj)"%dacTrungVe)
     plt.ylabel('Y')
     plt.show()
+
 
 def ve3D(mangCacDacTrung,dacTrungVe):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
@@ -104,6 +103,8 @@ def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     return float(MR(x_train,y_train,x_test,y_test)[:,0])*100
 
+ve2D(['Rating','Reviews','Size'],['Rating'])
 #ve2D(['Age','Weight','Height'],['Weight'])
 #ve3D(['Age','Weight','Height'],['Age','Weight'])
 print(tinhToan(['Rating','Reviews','Size']))
+#print(tinhToan(['Age','Weight','Height']))
