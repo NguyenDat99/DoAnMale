@@ -110,7 +110,7 @@ def data(k):
             ])
     elif k==4:# dataset_for_Poly_regression
         for i in range(len(tmp.Rating)):
-            dt.append([tmp.Rating[i],tmp.Reviews[i],chuyenDoiDuLieu(tmp.Size[i]),locKyTu(tmp.Installs[i])])
+            dt.append([tmp.Rating[i],tmp.Reviews[i],chuyenDoiDuLieu(tmp.Size[i]))
     return dt
 
 
@@ -131,4 +131,7 @@ def label_(k):
             elif tmp.TEST_RESULT[i]=='PASS':
                 TEST_RESULT=1
             dt.append(TEST_RESULT)
+    elif k == 4:
+        for i in range(len(tmp.Rating)):
+            dt.append(locKyTu(tmp.Installs[i]))
     return dt
