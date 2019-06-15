@@ -30,7 +30,7 @@ data=dp.data(4)
 label_=dp.label_(4)
 
 def MR(x_train,y_train,x_test,y_test):
-    poly_reg = PolynomialFeatures(degree=2)
+    poly_reg = PolynomialFeatures(degree=4)
     X_poly = poly_reg.fit_transform(x_train)
     lin_reg_2 = LinearRegression()
     lin_reg_2.fit(X_poly, y_train)
@@ -40,6 +40,7 @@ def MR(x_train,y_train,x_test,y_test):
     k=[]
     k.append([score,y_pred])
     return np.array(k)
+
 
 
 def vitriDacTrung(dacTrung):
@@ -103,8 +104,8 @@ def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     return float(MR(x_train,y_train,x_test,y_test)[:,0])*100
 
-ve2D(['Rating','Reviews','Size'],['Rating'])
+ve2D(['Rating','Reviews','Size'],['Reviews'])
 #ve2D(['Age','Weight','Height'],['Weight'])
-#ve3D(['Age','Weight','Height'],['Age','Weight'])
+ve3D(['Rating','Reviews','Size'],['Rating','Size'])
 print(tinhToan(['Rating','Reviews','Size']))
 #print(tinhToan(['Age','Weight','Height']))
