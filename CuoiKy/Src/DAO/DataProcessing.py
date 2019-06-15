@@ -110,7 +110,7 @@ def data(k):
             ])
     elif k==4:# dataset_for_Poly_regression
         for i in range(len(tmp.Rating)):
-            dt.append([tmp.Rating[i],tmp.Reviews[i],chuyenDoiDuLieu(tmp.Size[i]))
+            dt.append([tmp.Rating[i],tmp.Reviews[i],chuyenDoiDuLieu(tmp.Size[i])])
     return dt
 
 
