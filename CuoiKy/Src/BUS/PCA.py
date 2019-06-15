@@ -20,6 +20,8 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets
 iris = datasets.load_iris()
 
+# k y nghia la chon dataset cho tap iris hoac dataset goc
+
 def data(k):
     if k==1:
         return dp.data(3)
@@ -123,16 +125,16 @@ def KNN(n_pc,k):
     return [F,F1]
 
 
-def Draw_2d(k):
+def Draw_2d(k,title):
     dt=new_Data(2,k)
     dt=np.array(dt)
     plt.scatter(dt[:,0],dt[:,1],c=label_(k))
     plt.ylabel("Y")
     plt.xlabel("x")
-    plt.title("Vẽ 2 ")
+    plt.title(title)
     plt.show()
 
-def Draw_3d(k):
+def Draw_3d(k,title):
     dt=new_Data(3,k)
     fig = plt.figure()
     dt=np.array(dt)
@@ -141,5 +143,5 @@ def Draw_3d(k):
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
-    plt.title("Vẽ 3d")
+    plt.title(title)
     plt.show()
