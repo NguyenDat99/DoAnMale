@@ -104,6 +104,29 @@ def new_Data(n_pc):
     Y = Standardizing(2).dot(tmp.T)
     return Y
 
+
+def Selecting_Pri_Components():
+    eig_vals=Eigen_Values()
+    eig_vecs=Eigen_Vectors()
+    eig = [(np.abs(eig_vals[i]), eig_vecs[:,i]) for i in range(len(eig_vals))]
+    # xap xep eigenvalue, eigenvector tuples tu cao den thap
+    eig.sort()
+    eig.reverse()
+    ##danh gia du lieu bi mat
+    s = sum(eig_vals)
+    var = [(i / s)*100 for i in sorted(eig_vals, reverse=True)]
+    csvar = np.cumsum(var)
+    ##ve
+    y=[(i+50,csvar[i])for i in range(11)]
+    y=np.array(y)
+    plt.scatter(y[:,0],y[:,1],marker="o",c="#ff0066")
+    plt.plot(y[:,0],y[:,1],c="#3366cc")
+    plt.ylabel("Độ chính xác(%)")
+    plt.title("Biểu đồ thể hiện lượng thông tin của các DL")
+    plt.show()
+
+Selecting_Pri_Components()
+
 def KNN(n_pc):
     x_train, x_test, y_train, y_test=train_test_split(
     Standardizing(2),label_,test_size=0.2)
