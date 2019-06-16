@@ -30,7 +30,7 @@ data=dp.data(4)
 label_=dp.label_(4)
 
 def MR(x_train,y_train,x_test,y_test):
-    poly_reg = PolynomialFeatures(degree=4)
+    poly_reg = PolynomialFeatures(degree=3)
     X_poly = poly_reg.fit_transform(x_train)
     lin_reg_2 = LinearRegression()
     lin_reg_2.fit(X_poly, y_train)

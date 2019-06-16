@@ -132,6 +132,6 @@ def label_(k):
                 TEST_RESULT=1
             dt.append(TEST_RESULT)
     elif k == 4:
-        for i in range(len(tmp.Rating)):
+        for i in range(len(tmp.Installs)):
             dt.append(locKyTu(tmp.Installs[i]))
     return dt
