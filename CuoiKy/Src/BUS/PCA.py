@@ -38,8 +38,12 @@ def Standardizing(k):
     return dt
 def Mean(dt):
     #tinh ki vong trung binh
+    print(dt[0])
     mean_vec = np.mean(dt, axis=0)
+    print(mean_vec[0])
     return mean_vec
+
+
 def CovarianceMatrix(dt,mean_vec):
     #tinh matrix hiep phuong sai
     #σjk=1n−1∑Ni=1(xij−x¯j)(xik−x¯k)
