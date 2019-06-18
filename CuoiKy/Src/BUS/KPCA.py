@@ -151,4 +151,4 @@ def Draw_2d(k,title,gamma):
 print('Eigen_Values:', Eigen_Values(2,0.2))
 print('Eigen_Vectors:', Eigen_Vectors(2,0.2))
 Selecting_Pri_Components(2)
-#Draw_2d(2,'Gaussian RBF kernel PCA',0.2)
+Draw_2d(1,'Gaussian RBF kernel PCA',0.2)

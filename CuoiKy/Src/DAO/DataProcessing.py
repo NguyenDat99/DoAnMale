@@ -39,10 +39,10 @@ def data(k):
         for i in range(len(tmp.User_ID)):
             if tmp.Gender[i]=='Male':
                 dt.append([dem,0,tmp.Age[i],
-                tmp.EstimatedSalary[i]/1000,tmp.Purchased[i]])
+                tmp.EstimatedSalary[i]/1000])
             elif  tmp.Gender[i]=='Female':
                 dt.append([dem,1,tmp.Age[i],
-                tmp.EstimatedSalary[i]/1000,tmp.Purchased[i]])
+                tmp.EstimatedSalary[i]/1000])
             dem+=1
     elif k==1:# dataset_for_Logistic_regression
         Sex=0
@@ -117,7 +117,10 @@ def data(k):
 def label_(k):
     tmp=da.dataset(k)
     dt=[]
-    if k==1:
+    if k==0:
+        for i in range(len(tmp.User_ID)):
+            dt.append(tmp.Purchased[i])
+    elif k==1:
         for i in range(len(tmp.Sex)):
             dt.append(tmp.Survived[i])
     elif k==2:
