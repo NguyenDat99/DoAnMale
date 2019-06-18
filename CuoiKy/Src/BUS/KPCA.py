@@ -80,12 +80,14 @@ def Mean(dt):
     print(mean_vec[0])
     return mean_vec
 def Draw_2d(k,title):
-    X_pc = stepwise_kpca(k, gamma=15, n_components=2)
+    X_pc = stepwise_kpca(k, gamma=1, n_components=2)
 
-    dt=np.array(X_pc)
-    plt.scatter(dt[:, 0], dt[:, 1], c=label_(k))
-    plt.ylabel("Y")
-    plt.xlabel("x")
+    #plt.scatter(X_pc[:, 0], X_pc[:, 1], c=label_(k))
+    y = label_(k)
+    plt.scatter(X_pc[y == 0, 0], X_pc[y == 0, 1], color='red', alpha=0.5)
+    plt.scatter(X_pc[y == 1, 0], X_pc[y == 1, 1], color='blue', alpha=0.5)
+    plt.ylabel("PC2")
+    plt.xlabel("PC1")
     plt.title(title)
     plt.show()
-Draw_2d(2,'KPCA')
+Draw_2d(2,'Gaussian RBF kernel PCA')
