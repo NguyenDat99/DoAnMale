@@ -87,10 +87,8 @@ def Draw_2d(k,title,gamma):
 
     #Plot drawing
     plt.figure(figsize=(8, 6))
-    #plt.scatter(X_pc[:, 0], X_pc[:, 1], c=label_(k))
+    plt.scatter(X_pc[:, 0], X_pc[:, 1], c=label_(k))
     y = label_(k)
-    plt.scatter(X_pc[y == 0, 0], X_pc[y == 0, 1], color='red', alpha=0.5)
-    plt.scatter(X_pc[y == 1, 0], X_pc[y == 1, 1], color='blue', alpha=0.5)
     plt.ylabel("PC2")
     plt.xlabel("PC1")
     plt.title(title+' gamma='+x )

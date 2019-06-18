@@ -149,3 +149,4 @@ def Draw_3d(k,title):
     ax.set_zlabel("Z")
     plt.title(title)
     plt.show()
+Draw_2d(2,'pca')
