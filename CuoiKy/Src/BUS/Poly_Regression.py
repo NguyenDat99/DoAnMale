@@ -114,7 +114,7 @@ def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     return float(PLR(x_train,y_train,x_test,y_test)[:,0])*100
 
-ve2D(['Rating','Reviews','Size'],['Rating'])
+ve2D(['Rating','Reviews','Size'],['Reviews'])
 #ve2D(['Age','Weight','Height'],['Weight'])
 ve3D(['Rating','Reviews','Size'],['Rating','Size'])
 print(tinhToan(['Rating','Reviews','Size']))
