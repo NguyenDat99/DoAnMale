@@ -26,12 +26,12 @@ import numpy as np
 
 def data(k):
     if k==1:
-        return dp.data(3)
+        return dp.data(0)
     elif k==2:
         return iris.data
 def label_(k):
     if k==1:
-        return dp.label_(3)
+        return dp.label_(0)
     elif k==2:
         return iris.target
 def Standardizing(k):
@@ -71,14 +71,68 @@ def stepwise_kpca(X, gamma, n_components):
 
     # Obtaining the i eigenvectors that corresponds to the i highest eigenvalues.
     X_pc = np.column_stack((eigvecs[:,-i] for i in range(1,n_components+1)))
-
     return X_pc
-def Mean(dt):
-    #tinh ki vong trung binh
-    print(dt[0])
-    mean_vec = np.mean(dt, axis=0)
-    print(mean_vec[0])
-    return mean_vec
+
+def Eigen_Values(X, gamma):
+    sq_dists = pdist(Standardizing(X), 'sqeuclidean')
+
+    # Converting the pairwise distances into a symmetric MxM matrix.
+    mat_sq_dists = squareform(sq_dists)
+
+    # Computing the MxM kernel matrix.
+    K = exp(-gamma * mat_sq_dists)
+
+    # Centering the symmetric NxN kernel matrix.
+    N = K.shape[0]
+    one_n = np.ones((N, N)) / N
+    K = K - one_n.dot(K) - K.dot(one_n) + one_n.dot(K).dot(one_n)
+
+    # Obtaining eigenvalues in descending order with corresponding
+    # eigenvectors from the symmetric matrix.
+    eigvals, eigvecs = eigh(K)
+    return eigvals
+
+def Eigen_Vectors(X, gamma):
+    sq_dists = pdist(Standardizing(X), 'sqeuclidean')
+
+    # Converting the pairwise distances into a symmetric MxM matrix.
+    mat_sq_dists = squareform(sq_dists)
+
+    # Computing the MxM kernel matrix.
+    K = exp(-gamma * mat_sq_dists)
+
+    # Centering the symmetric NxN kernel matrix.
+    N = K.shape[0]
+    one_n = np.ones((N, N)) / N
+    K = K - one_n.dot(K) - K.dot(one_n) + one_n.dot(K).dot(one_n)
+
+    # Obtaining eigenvalues in descending order with corresponding
+    # eigenvectors from the symmetric matrix.
+    eigvals, eigvecs = eigh(K)
+    return eigvecs
+def Selecting_Pri_Components(k):
+    if k==2:
+        return None
+    eig_vals=Eigen_Values(k,0.1)
+    eig_vecs=Eigen_Vectors(k,0.1)
+    eig = [(np.abs(eig_vals[i]), eig_vecs[:,i]) for i in range(len(eig_vals))]
+    # xap xep eigenvalue, eigenvector tuples tu cao den thap
+    eig.sort()
+    eig.reverse()
+    ##danh gia du lieu bi mat
+    s = sum(eig_vals)
+    var = [(i / s)*100 for i in sorted(eig_vals, reverse=True)]
+    csvar = np.cumsum(var)
+    ##ve
+    y=[(i+50,csvar[i])for i in range(11)]
+    y=np.array(y)
+    plt.scatter(y[:,0],y[:,1],marker="*",c="red")
+    for i in range(11):
+        plt.text(float(y[i,0])+0.3,float(y[i,1])-0.3,"PC%s"%i,fontsize=15)
+    plt.plot(y[:,0],y[:,1])
+    plt.ylabel("Độ chính xác(%)")
+    plt.title("Biểu đồ thể hiện lượng thông tin của các PC")
+    plt.show()
 def Draw_2d(k,title,gamma):
     X_pc = stepwise_kpca(k, gamma=gamma, n_components=2)
 
@@ -94,4 +148,7 @@ def Draw_2d(k,title,gamma):
     plt.title(title+' gamma='+x )
     plt.show()
 
-Draw_2d(2,'Gaussian RBF kernel PCA',0.2)
+print('Eigen_Values:', Eigen_Values(2,0.2))
+print('Eigen_Vectors:', Eigen_Vectors(2,0.2))
+Selecting_Pri_Components(2)
+#Draw_2d(2,'Gaussian RBF kernel PCA',0.2)
