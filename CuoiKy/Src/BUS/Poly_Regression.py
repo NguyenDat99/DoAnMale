@@ -29,8 +29,8 @@ from mpl_toolkits.mplot3d import Axes3D
 data=dp.data(4)
 label_=dp.label_(4)
 
-def MR(x_train,y_train,x_test,y_test):
-    poly_reg = PolynomialFeatures(degree=3)
+def PLR(x_train,y_train,x_test,y_test):
+    poly_reg = PolynomialFeatures(degree=2)
     X_poly = poly_reg.fit_transform(x_train)
     lin_reg_2 = LinearRegression()
     lin_reg_2.fit(X_poly, y_train)
@@ -70,22 +70,32 @@ def layDacTrung(mangCacDacTrung):
 
 def ve2D(mangCacDacTrung,dacTrungVe):
     x_train,x_test,y_train,y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
-    m1=MR(x_train[layviTriDacTrung(dacTrungVe)],y_train,x_test[layviTriDacTrung(dacTrungVe)],y_test)
+    m1=PLR(x_train[layviTriDacTrung(dacTrungVe)],y_train,x_test[layviTriDacTrung(dacTrungVe)],y_test)
     y_pred=[]
     for i in range(len((m1[:,1])[0])):
         y_pred.append((m1[:,1])[0][i])
-    plt.scatter(x_test[layviTriDacTrung(dacTrungVe)],y_test,s=10,c='blue')
+
+    # pr = LinearRegression()
+    # quadratic = PolynomialFeatures(degree=2)
+    # X_quad = quadratic.fit_transform(x_train[layviTriDacTrung(dacTrungVe)])
+    # pr.fit(X_quad, y_train)
+    # y_quad_fit = pr.predict(quadratic.fit_transform(x_test[layviTriDacTrung(dacTrungVe)]))
+
+    plt.scatter(x_train[layviTriDacTrung(dacTrungVe)],y_train,s=10,c='blue')
     plt.plot(x_test[layviTriDacTrung(dacTrungVe)],y_pred, color='red')
     plt.title('Polynomial Regression')
     plt.xlabel("%s(Xj)"%dacTrungVe)
     plt.ylabel('Y')
+
+    plt.legend(loc='upper left')
+    plt.tight_layout()
     plt.show()
 
 
 def ve3D(mangCacDacTrung,dacTrungVe):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
-    m0=MR(x_train[layviTriDacTrung([dacTrungVe[0]])],y_train,x_test[layviTriDacTrung([dacTrungVe[0]])],y_test)
-    m1=MR(x_train[layviTriDacTrung([dacTrungVe[1]])],y_train,x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
+    m0=PLR(x_train[layviTriDacTrung([dacTrungVe[0]])],y_train,x_test[layviTriDacTrung([dacTrungVe[0]])],y_test)
+    m1=PLR(x_train[layviTriDacTrung([dacTrungVe[1]])],y_train,x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
     y_pred0=[]
     y_pred1=[]
     for i in range(len((m0[:,1])[0])):
@@ -102,9 +112,9 @@ def ve3D(mangCacDacTrung,dacTrungVe):
 
 def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
-    return float(MR(x_train,y_train,x_test,y_test)[:,0])*100
+    return float(PLR(x_train,y_train,x_test,y_test)[:,0])*100
 
-ve2D(['Rating','Reviews','Size'],['Reviews'])
+ve2D(['Rating','Reviews','Size'],['Rating'])
 #ve2D(['Age','Weight','Height'],['Weight'])
 ve3D(['Rating','Reviews','Size'],['Rating','Size'])
 print(tinhToan(['Rating','Reviews','Size']))
