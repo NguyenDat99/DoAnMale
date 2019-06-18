@@ -129,6 +129,7 @@ def KNN(n_pc,k):
     return [F,F1]
 
 
+
 def Draw_2d(k,title):
     dt=new_Data(2,k)
     dt=np.array(dt)

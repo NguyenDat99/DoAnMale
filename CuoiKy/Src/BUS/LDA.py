@@ -122,10 +122,9 @@ def Selecting_Pri_Components():
     plt.scatter(y[:,0],y[:,1],marker="o",c="#ff0066")
     plt.plot(y[:,0],y[:,1],c="#3366cc")
     plt.ylabel("Độ chính xác(%)")
-    plt.title("Biểu đồ thể hiện lượng thông tin của các DL")
+    plt.title("Biểu đồ thể hiện lượng thông tin của các LD")
     plt.show()
 
-Selecting_Pri_Components()
 
 def KNN(n_pc):
     x_train, x_test, y_train, y_test=train_test_split(

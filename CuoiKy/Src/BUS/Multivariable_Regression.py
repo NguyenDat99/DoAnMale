@@ -107,22 +107,22 @@ def ve2D(mangCacDacTrung,dacTrungVe):
     plt.ylabel('Y')
     plt.show()
 
-def ve3D(mangCacDacTrung,dacTrungVe):
-    x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
-    m0=MR(x_train[layviTriDacTrung([dacTrungVe[0]])],y_train,x_test[layviTriDacTrung([dacTrungVe[0]])],y_test)
-    m1=MR(x_train[layviTriDacTrung([dacTrungVe[1]])],y_train,x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
-    y_pred0=[]
-    y_pred1=[]
-    for i in range(len((m0[:,1])[0])):
-        y_pred0.append((m0[:,1])[0][i])
-    for i in range(len((m1[:,1])[0])):
-        y_pred1.append((m1[:,1])[0][i])
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(y_test,x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])])
-    ax.plot(x_test[layviTriDacTrung([dacTrungVe[0]])], y_pred0)
-    ax.plot(x_test[layviTriDacTrung([dacTrungVe[1]])], y_pred1)
-    plt.show()
+# def ve3D(mangCacDacTrung,dacTrungVe):
+#     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
+#     m0=MR(x_train[layviTriDacTrung([dacTrungVe[0]])],y_train,x_test[layviTriDacTrung([dacTrungVe[0]])],y_test)
+#     m1=MR(x_train[layviTriDacTrung([dacTrungVe[1]])],y_train,x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
+#     y_pred0=[]
+#     y_pred1=[]
+#     for i in range(len((m0[:,1])[0])):
+#         y_pred0.append((m0[:,1])[0][i])
+#     for i in range(len((m1[:,1])[0])):
+#         y_pred1.append((m1[:,1])[0][i])
+#     fig = plt.figure()
+#     ax = fig.add_subplot(111, projection='3d')
+#     ax.scatter(y_test,x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])])
+#     ax.plot(x_test[layviTriDacTrung([dacTrungVe[0]])], y_pred0)
+#     ax.plot(x_test[layviTriDacTrung([dacTrungVe[1]])], y_pred1)
+#     plt.show()
 
 
 def tinhToan(mangCacDacTrung):
@@ -132,3 +132,17 @@ def tinhToan(mangCacDacTrung):
 #ve2D(['Age','Weight','Height'],['Weight'])
 #ve3D(['Age','Weight','Height'],['Age','Weight'])
 #print(tinhToan(['Age','Weight','Height']))
+
+
+
+def ve3D(mangCacDacTrung,dacTrungVe):
+    x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
+    m0=MR(x_train,y_train,x_test,y_test)
+    y_pred0=[]
+    for i in range(len((m0[:,1])[0])):
+        y_pred0.append((m0[:,1])[0][i])
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
+    ax.plot(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])], y_pred0)
+    plt.show()
