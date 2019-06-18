@@ -133,6 +133,25 @@ def Selecting_Pri_Components(k):
     plt.ylabel("Độ chính xác(%)")
     plt.title("Biểu đồ thể hiện lượng thông tin của các PC")
     plt.show()
+
+def KNN(gamma,k,n_comp):
+    x_train, x_test, y_train, y_test=train_test_split(
+    data(k),label_(k),test_size=0.2)
+    dt=stepwise_kpca(k,gamma,n_comp)
+    if k==2:
+        return None
+    x_train_PCA, x_test_PCA, y_train_PCA, y_test_PCA=train_test_split(
+    dt,label_(k),test_size=0.2)
+    clf=KNeighborsClassifier(n_neighbors=13).fit(x_train,y_train)
+    precision= precision_score(y_test,clf.predict(x_test))
+    recall= recall_score(y_test,clf.predict(x_test))
+    F=(2*precision*recall)/(precision+recall)
+    clf1=KNeighborsClassifier(n_neighbors=13).fit(x_train_PCA,y_train_PCA)
+    precision1= precision_score(y_test_PCA,clf1.predict(x_test_PCA))
+    recall1= recall_score(y_test_PCA,clf1.predict(x_test_PCA))
+    F1=(2*precision1*recall1)/(precision1+recall1)
+    return [F,F1]
+
 def Draw_2d(k,title,gamma):
     X_pc = stepwise_kpca(k, gamma=gamma, n_components=2)
 
@@ -148,7 +167,8 @@ def Draw_2d(k,title,gamma):
     plt.title(title+' gamma='+x )
     plt.show()
 
-print('Eigen_Values:', Eigen_Values(2,0.2))
-print('Eigen_Vectors:', Eigen_Vectors(2,0.2))
-Selecting_Pri_Components(2)
-Draw_2d(1,'Gaussian RBF kernel PCA',0.2)
+# print('Eigen_Values:', Eigen_Values(1,0.2))
+# print('Eigen_Vectors:', Eigen_Vectors(1,0.2))
+# Selecting_Pri_Components(2)
+print(KNN(0.2,1,2))
+#Draw_2d(1,'Gaussian RBF kernel PCA',0.2)
