@@ -86,9 +86,7 @@ def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     return float(logistic(x_train,y_train,x_test,y_test)[:,0])*100
 
-#ve2D(['Age','Weight','Height'],['Weight'])
-#ve3D(['Age','Weight','Height'],['Age','Weight'])
-#print(tinhToan(['Age','Weight','Height']))
+
 
 
 
@@ -103,3 +101,7 @@ def ve3D(mangCacDacTrung,dacTrungVe):
     ax.scatter(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
     ax.plot(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])], y_pred0)
     plt.show()
+
+ve2D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild'])
+#ve3D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild','Embarked_'])
+print(tinhToan(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_']))
