@@ -82,14 +82,6 @@ def ve2D(mangCacDacTrung,dacTrungVe):
     plt.ylabel('Y')
     plt.show()
     
-def tinhToan(mangCacDacTrung):
-    x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
-    return float(logistic(x_train,y_train,x_test,y_test)[:,0])*100
-
-
-
-
-
 def ve3D(mangCacDacTrung,dacTrungVe):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     m0=logistic(x_train,y_train,x_test,y_test)
@@ -101,6 +93,10 @@ def ve3D(mangCacDacTrung,dacTrungVe):
     ax.scatter(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])],y_test)
     ax.plot(x_test[layviTriDacTrung([dacTrungVe[0]])],x_test[layviTriDacTrung([dacTrungVe[1]])], y_pred0)
     plt.show()
+
+def tinhToan(mangCacDacTrung):
+    x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
+    return float(logistic(x_train,y_train,x_test,y_test)[:,0])*100
 
 ve2D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild'])
 #ve3D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild','Embarked_'])
