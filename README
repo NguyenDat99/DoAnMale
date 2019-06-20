@@ -12,8 +12,15 @@ Giữa kỳ:
 
 Cuồi kỳ:
 	Yêu cầu:
+		+ Python3
 		+ Pillow
 		+ opencv-python
-		+ pyinstaller
 		+ Numba
 		+ colorama >=0.3.9
+		+ Matplotlib
+		+ Sklearn
+		+ Pandas
+		+ Cython
+		+ Cmake/Gcc(Unix), mingw/Windows Subsystem for Linux(Windows)
+		+ tkinter
+

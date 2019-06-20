@@ -38,9 +38,7 @@ def Standardizing(k):
     return dt
 def Mean(dt):
     #tinh ki vong trung binh
-    print(dt[0])
     mean_vec = np.mean(dt, axis=0)
-    print(mean_vec[0])
     return mean_vec
 
 
@@ -50,12 +48,14 @@ def CovarianceMatrix(dt,mean_vec):
     cov_mat = (dt - mean_vec).T.dot((dt - mean_vec)) / (dt.shape[0]-1)
     return cov_mat
 
+
 def Eigen_Values(k):
     dt=Standardizing(k)
     mean_vec=Mean(dt)
     cov_mat=CovarianceMatrix(dt,mean_vec)
     eig_vals, eig_vecs = np.linalg.eig(cov_mat)
     return eig_vals
+
 
 def Eigen_Vectors(k):
     dt=Standardizing(k)

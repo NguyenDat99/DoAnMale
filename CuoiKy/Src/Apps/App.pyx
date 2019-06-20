@@ -14,9 +14,6 @@ import PCA
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-
-
 isLogin=[]
 tinhToan=[]#bien tam cho tinh toan
 isAll=[]#bien tam cho nut all

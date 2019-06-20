@@ -167,8 +167,8 @@ def Draw_2d(k,title,gamma):
     plt.title(title+' gamma='+x )
     plt.show()
 
-print('Eigen_Values:', Eigen_Values(1,0.2))
-print('Eigen_Vectors:', Eigen_Vectors(1,0.2))
-Selecting_Pri_Components(1)
-print(KNN(0.2,1,2))
-Draw_2d(1,'Gaussian RBF kernel PCA',0.2)
+#print('Eigen_Values:', Eigen_Values(1,0.2))
+#print('Eigen_Vectors:', Eigen_Vectors(1,0.2))
+#Selecting_Pri_Components(1)
+#print(KNN(0.2,1,2))
+#Draw_2d(1,'Gaussian RBF kernel PCA',0.2)

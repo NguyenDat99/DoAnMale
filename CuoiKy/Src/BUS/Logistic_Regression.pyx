@@ -60,7 +60,7 @@ def tenDacTrung(viTri):
                 5:'Embarked_',
                 }
       return switcher.get(viTri)
-  
+
 def layviTriDacTrung(mangCacDacTrung):
     m=[]
     for i in mangCacDacTrung:
@@ -81,7 +81,7 @@ def ve2D(mangCacDacTrung,dacTrungVe):
     plt.xlabel("%s(Xj)"%dacTrungVe)
     plt.ylabel('Y')
     plt.show()
-    
+
 def ve3D(mangCacDacTrung,dacTrungVe):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     m0=logistic(x_train,y_train,x_test,y_test)
@@ -98,6 +98,6 @@ def tinhToan(mangCacDacTrung):
     x_train, x_test, y_train, y_test=train_test_split(layDacTrung(mangCacDacTrung),label_,test_size=0.2)
     return float(logistic(x_train,y_train,x_test,y_test)[:,0])*100
 
-ve2D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild'])
+#ve2D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild'])
 #ve3D(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_'],['ParentChild','Embarked_'])
-print(tinhToan(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_']))
+#print(tinhToan(['Sex','AgeRange','Class_','SiblingSpouse','ParentChild','Embarked_']))

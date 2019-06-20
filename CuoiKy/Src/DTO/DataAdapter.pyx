@@ -9,8 +9,6 @@
 # coding=utf-8
 import pandas as pd
 from multiprocessing.dummy import Pool as ThreadPool
-
-
 dataset_for_Kernel_PCA=pd.read_csv('../DTO/dataset/dataset_for_Kernel_PCA.csv',encoding='utf-8')
 dataset_for_Logistic_regression=pd.read_csv('../DTO/dataset/dataset_for_Logistic_regression.csv',encoding='utf-8')
 dataset_for_MultiLinear_regression=pd.read_csv('../DTO/dataset/dataset_for_MultiLinear_regression.csv',encoding='utf-8')

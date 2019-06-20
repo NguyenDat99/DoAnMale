@@ -78,6 +78,7 @@ def LDA_matrix():
 
 
 
+
 def Eigen_Values():
     LDA_mat=LDA_matrix()
     eig_vals, eig_vecs = np.linalg.eig(LDA_mat)
@@ -88,6 +89,7 @@ def Eigen_Vectors():
     LDA_mat=LDA_matrix()
     eig_vals, eig_vecs =np.linalg.eig(LDA_mat)
     return eig_vecs
+
 
 
 def new_Data(n_pc):
@@ -103,6 +105,7 @@ def new_Data(n_pc):
     tmp=np.array(tmp)
     Y = Standardizing(2).dot(tmp.T)
     return Y
+
 
 
 def Selecting_Pri_Components():
@@ -124,6 +127,7 @@ def Selecting_Pri_Components():
     plt.ylabel("Độ chính xác(%)")
     plt.title("Biểu đồ thể hiện lượng thông tin của các LD")
     plt.show()
+
 
 
 def KNN(n_pc):
@@ -151,6 +155,7 @@ def Draw_2d(title):
     plt.xlabel("x")
     plt.title(title)
     plt.show()
+
 
 def Draw_3d(title):
     dt=new_Data(3)
